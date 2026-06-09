@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "hero": "Home",
+    "projects": "Projects",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "cta_projects": "View projects",
+    "cta_contact": "Contact"
+  },
+  "sections": {
+    "projects": "Projects",
+    "projects_subtitle": "Some of the projects I've worked on",
+    "experience": "Experience",
+    "education": "Education",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "contact_invite": "Have a project in mind or want to talk about AI? Drop me a line."
+  },
+  "contact": {
+    "email_label": "Send email",
+    "linkedin_label": "LinkedIn",
+    "github_label": "GitHub"
+  },
+  "timeline": {
+    "present": "Present"
+  },
+  "education": {
+    "exchange": "Erasmus"
+  },
+  "footer": {
+    "copyright": "Miguel Á. Benítez Alguacil"
+  },
+  "theme": {
+    "toggle_light": "Switch to light mode",
+    "toggle_dark": "Switch to dark mode"
+  },
+  "locale": {
+    "switch_to_en": "Switch to English",
+    "switch_to_es": "Cambiar a Español"
+  },
+  "project": {
+    "view_repo": "View repository",
+    "view_demo": "View demo",
+    "view_backend": "Backend",
+    "view_mod": "Mod"
+  }
+}

@@ -20,6 +20,11 @@
 # production
 /build
 
+# SDD
+.playwright-mcp/
+config.yaml
+openspec
+
 # misc
 .DS_Store
 *.pem

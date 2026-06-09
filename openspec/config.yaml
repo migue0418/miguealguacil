@@ -36,7 +36,7 @@ context: |
 rules:
   proposal:
     - Indica qué secciones/componentes/páginas se ven afectados.
-    - Si el cambio añade contenido, especifica qué archivos de `content/` y `messages/` necesitan actualizarse.
+    - "Si el cambio añade contenido, especifica qué archivos de `content/` y `messages/` necesitan actualizarse."
     - Si la feature requiere backend (API routes, DB, autenticación), señálarlo explícitamente — es una decisión arquitectónica.
   specs:
     - Usa formato Given/When/Then en los escenarios.
@@ -44,8 +44,8 @@ rules:
     - Incluye comportamiento en ES y EN para features con i18n.
     - Considera accesibilidad (roles ARIA, navegación teclado) en componentes interactivos.
   design:
-    - Describe el cambio capa por capa: `content/` + `messages/` → componentes → páginas/layout → animaciones.
-    - Especifica qué wrappers de `components/animations/` usar y cómo integrar Framer Motion.
+    - "Describe el cambio capa por capa: `content/` + `messages/` → componentes → páginas/layout → animaciones."
+    - "Especifica qué wrappers de `components/animations/` usar y cómo integrar Framer Motion."
     - Indica si un componente es Server o Client Component y por qué.
     - "OBLIGATORIO: antes de /opsx:apply, genera el plan técnico con el agente developer en `.claude/doc/<change>/developer.md`. No es opcional."
   tasks:
