@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "try { $j = [Console]::In.ReadToEnd() | ConvertFrom-Json -ErrorAction Stop; $txt = \"$($j.user_prompt)$($j.prompt)$($j.message)\" } catch { $txt = '' }; if ($txt -imatch '(plan|implement|propone|crea|agrega|feature|funcionalidad|construye|nueva|develop|build|añade|diseña)') { '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"RECORDATORIO SDD OBLIGATORIO: El primer paso es siempre el flujo SDD. Usa /opsx:explore si hay dudas o /opsx:propose si la idea es clara. No planifiques ni implementes sin pasar primero por el flujo SDD.\"}}' }",
+            "statusMessage": "Verificando flujo SDD...",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

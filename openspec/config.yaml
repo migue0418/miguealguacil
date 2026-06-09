@@ -1,0 +1,58 @@
+# Configuración de proyecto para OpenSpec
+# Docs: https://github.com/Fission-AI/OpenSpec
+schema: spec-driven
+
+context: |
+  # Portfolio miguealguacil.com
+
+  ## Stack
+  - Next.js 16 (App Router, SSG con `generateStaticParams`). TypeScript strict.
+  - Tailwind CSS v4. Sin backend propio — todo es generación estática.
+  - next-intl v4 para i18n: rutas `/[locale]/`, locale por defecto `es`, soportados: `es`, `en`.
+  - Framer Motion v12 para animaciones declarativas. Lenis v1 para scroll suave global.
+  - Hosting en Vercel plan Hobby (gratuito). Dominio: miguealguacil.com.
+  - Tests: Vitest + Testing Library (unit), Playwright (E2E).
+
+  ## Estructura de carpetas
+  - `app/[locale]/` — páginas bilingües (layout, page, secciones)
+  - `components/layout/` — Header, Footer, Nav, ThemeToggle, LocaleToggle
+  - `components/sections/` — secciones de página (Hero, ProjectsGrid, Timeline, Education, Contact)
+  - `components/ui/` — componentes atómicos reutilizables (Button, Badge, Card, Tag...)
+  - `components/animations/` — wrappers Framer Motion reutilizables (FadeIn, SlideUp, StaggerChildren, MagneticButton)
+  - `content/{es,en}/` — datos del portfolio como objetos TypeScript tipados (proyectos, experiencia, educación, certs, personal)
+  - `messages/{es,en}.json` — strings de UI (next-intl)
+  - `lib/` — helpers (content loaders, utils)
+  - `public/` — imágenes y assets estáticos
+
+  ## Convenciones clave
+  - Alias `@` para imports desde la raíz del proyecto.
+  - Contenido SIEMPRE en `content/`, nunca hardcodeado en componentes.
+  - Strings de UI SIEMPRE en `messages/`, accedidos vía `useTranslations`.
+  - Animaciones con intención: wrappers reutilizables en `components/animations/`. Presupuesto: hero < 1.5 s.
+  - Server Components por defecto; `"use client"` solo cuando hay estado/efectos cliente.
+  - Tema claro/oscuro via Tailwind `dark:` clases + `ThemeProvider` en layout raíz.
+  - Consultar `node_modules/next/dist/docs/` para APIs de Next.js 16 (breaking changes vs versiones anteriores).
+
+rules:
+  proposal:
+    - Indica qué secciones/componentes/páginas se ven afectados.
+    - Si el cambio añade contenido, especifica qué archivos de `content/` y `messages/` necesitan actualizarse.
+    - Si la feature requiere backend (API routes, DB, autenticación), señálarlo explícitamente — es una decisión arquitectónica.
+  specs:
+    - Usa formato Given/When/Then en los escenarios.
+    - Cubre estados vacío, carga, error y responsive además del happy path.
+    - Incluye comportamiento en ES y EN para features con i18n.
+    - Considera accesibilidad (roles ARIA, navegación teclado) en componentes interactivos.
+  design:
+    - Describe el cambio capa por capa: `content/` + `messages/` → componentes → páginas/layout → animaciones.
+    - Especifica qué wrappers de `components/animations/` usar y cómo integrar Framer Motion.
+    - Indica si un componente es Server o Client Component y por qué.
+    - "OBLIGATORIO: antes de /opsx:apply, genera el plan técnico con el agente developer en `.claude/doc/<change>/developer.md`. No es opcional."
+  tasks:
+    - "Antes de escribir tasks.md, lee `.claude/rules/openspec-tasks-mandatory-steps.md`."
+    - "Paso 0 (obligatorio, el primero): crear rama `feature/<change-name>`."
+    - "Aplica TDD donde tenga sentido: tests Vitest que fallan primero, luego implementación."
+    - "Obligatorio: ejecutar `npm run lint && npm run test && npm run build` antes de PR."
+    - "Obligatorio si hay cambios de UI: E2E con Playwright MCP ejecutado por el agente (no el usuario)."
+    - "Obligatorio: actualizar `content/` y `messages/` si el cambio afecta contenido o strings."
+    - "Paso final: abrir el PR con `gh` usando la skill write-pr-report."
