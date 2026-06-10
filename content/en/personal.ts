@@ -8,4 +8,5 @@ export const personal: PersonalInfo = {
   linkedin: 'https://www.linkedin.com/in/miguealguacil/',
   github: 'https://github.com/migue0418',
   location: 'Granada, Spain',
+  cvUrl: '/cv/cv-miguel-benitez-en.pdf',
 }

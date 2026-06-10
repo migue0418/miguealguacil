@@ -57,6 +57,15 @@ export async function Hero({ personal }: HeroProps) {
                 {t('cta_contact')}
               </a>
             </MagneticButton>
+            <MagneticButton>
+              <a
+                href={personal.cvUrl}
+                download
+                className="inline-flex items-center gap-2 border border-default text-primary font-mono uppercase tracking-wide text-sm font-medium px-6 py-3 rounded-none hover:bg-surface-hover transition-colors"
+              >
+                {t('cta_cv')}
+              </a>
+            </MagneticButton>
           </div>
         </FadeIn>
       </div>

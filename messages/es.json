@@ -5,11 +5,13 @@
     "stack": "Stack",
     "experience": "Experiencia",
     "education": "Educación",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "cv": "CV"
   },
   "hero": {
     "cta_projects": "Ver proyectos",
     "cta_contact": "Contacto",
+    "cta_cv": "Descargar CV",
     "bio_label": "BIO"
   },
   "sections": {

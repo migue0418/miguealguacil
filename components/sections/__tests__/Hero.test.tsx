@@ -21,6 +21,7 @@ const mockPersonal: PersonalInfo = {
   linkedin: 'https://linkedin.com/in/test',
   github: 'https://github.com/test',
   location: 'Test City',
+  cvUrl: '/cv/cv-miguel-benitez-es.pdf',
 }
 
 describe('Hero', () => {
@@ -40,5 +41,13 @@ describe('Hero', () => {
     const { Hero } = await import('../Hero')
     render(await Hero({ personal: mockPersonal }))
     expect(screen.getByText('AI Engineer')).toBeInTheDocument()
+  })
+
+  it('renders the CV download CTA with correct href and download attribute', async () => {
+    const { Hero } = await import('../Hero')
+    render(await Hero({ personal: mockPersonal }))
+    const cvLink = screen.getByRole('link', { name: 'cta_cv' })
+    expect(cvLink).toHaveAttribute('href', '/cv/cv-miguel-benitez-es.pdf')
+    expect(cvLink).toHaveAttribute('download')
   })
 })

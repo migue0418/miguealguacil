@@ -24,6 +24,7 @@ const mockPersonal: PersonalInfo = {
   linkedin: 'https://linkedin.com/in/test',
   github: 'https://github.com/test',
   location: 'City',
+  cvUrl: '/cv/cv-miguel-benitez-es.pdf',
 }
 
 describe('Contact', () => {
