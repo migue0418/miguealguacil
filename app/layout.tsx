@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   title: 'miguealguacil — AI Engineer',
   description:
     'Portfolio de Miguel Á. Benítez Alguacil, AI Engineer especializado en GenAI, agentes LLM y desarrollo de producto.',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#131314',
 }
 
 export default function RootLayout({
