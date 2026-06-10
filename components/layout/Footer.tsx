@@ -6,8 +6,8 @@ export async function Footer() {
 
   return (
     <footer className="border-t border-default mt-24">
-      <div className="max-w-[1100px] mx-auto px-6 py-8 text-center">
-        <p className="text-sm text-muted">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-20 py-8 text-center">
+        <p className="font-mono text-xs uppercase tracking-wide text-muted">
           © {year} {t('copyright')}
         </p>
       </div>

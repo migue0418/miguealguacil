@@ -15,10 +15,10 @@ export function LocaleToggle() {
   return (
     <button
       onClick={switchLocale}
-      className="flex items-center gap-1 text-sm font-medium text-muted hover:text-accent transition-colors px-2 py-1 rounded"
+      className="flex items-center gap-1 font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors px-2 py-1 rounded-none"
       aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a Español'}
     >
-      <span className="font-semibold text-accent">{locale.toUpperCase()}</span>
+      <span className="text-accent">{locale.toUpperCase()}</span>
       <span className="opacity-40">/</span>
       <span>{locale === 'es' ? 'EN' : 'ES'}</span>
     </button>

@@ -2,17 +2,20 @@
   "nav": {
     "hero": "Home",
     "projects": "Projects",
+    "stack": "Stack",
     "experience": "Experience",
     "education": "Education",
     "contact": "Contact"
   },
   "hero": {
     "cta_projects": "View projects",
-    "cta_contact": "Contact"
+    "cta_contact": "Contact",
+    "bio_label": "BIO"
   },
   "sections": {
     "projects": "Projects",
     "projects_subtitle": "Some of the projects I've worked on",
+    "stack": "Stack",
     "experience": "Experience",
     "education": "Education",
     "certifications": "Certifications",
@@ -28,7 +31,8 @@
     "present": "Present"
   },
   "education": {
-    "exchange": "Erasmus"
+    "exchange": "Erasmus",
+    "verify": "Verify"
   },
   "footer": {
     "copyright": "Miguel Á. Benítez Alguacil"

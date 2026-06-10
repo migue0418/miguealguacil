@@ -19,8 +19,8 @@ export function TimelineItem({ item, presentLabel }: TimelineItemProps) {
     <div className="relative pl-6 border-l-2 border-default">
       <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-[var(--color-accent)]" />
       <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-        <h3 className="text-primary font-semibold text-[1.0625rem]">{item.role}</h3>
-        <span className="text-sm text-muted shrink-0">
+        <h3 className="font-display font-medium text-primary text-[1.0625rem]">{item.role}</h3>
+        <span className="font-mono text-xs text-muted shrink-0 uppercase tracking-wide">
           {startFormatted} — {endFormatted}
         </span>
       </div>

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 const NAV_ITEMS = [
   { key: 'projects', href: '#proyectos' },
+  { key: 'stack', href: '#stack' },
   { key: 'experience', href: '#experiencia' },
   { key: 'education', href: '#educacion' },
   { key: 'contact', href: '#contacto' },
@@ -16,7 +17,7 @@ export async function Nav() {
         <a
           key={item.key}
           href={item.href}
-          className="text-sm font-medium text-muted hover:text-accent transition-colors"
+          className="font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors"
         >
           {t(item.key)}
         </a>

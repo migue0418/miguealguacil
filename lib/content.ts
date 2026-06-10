@@ -1,4 +1,4 @@
-import type { PersonalInfo, Project, ExperienceItem, EducationData } from './types'
+import type { PersonalInfo, Project, ExperienceItem, EducationData, SkillCategory } from './types'
 
 export async function getPersonal(locale: string): Promise<PersonalInfo> {
   const mod = await import(`@/content/${locale}/personal`)
@@ -18,4 +18,9 @@ export async function getExperience(locale: string): Promise<ExperienceItem[]> {
 export async function getEducation(locale: string): Promise<EducationData> {
   const mod = await import(`@/content/${locale}/education`)
   return mod.educationData
+}
+
+export async function getSkills(locale: string): Promise<SkillCategory[]> {
+  const mod = await import(`@/content/${locale}/skills`)
+  return mod.skills
 }

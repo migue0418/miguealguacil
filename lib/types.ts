@@ -58,3 +58,14 @@ export interface EducationData {
   degrees: EducationItem[]
   certifications: Certification[]
 }
+
+export interface Skill {
+  name: string
+  icon: string
+}
+
+export interface SkillCategory {
+  id: string
+  category: string
+  skills: Skill[]
+}

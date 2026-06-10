@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
-import { SlideUp } from '@/components/animations/SlideUp'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { StaggerChildren } from '@/components/animations/StaggerChildren'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { AnimatedProjectCard } from '@/components/ui/AnimatedProjectCard'
 import type { Project } from '@/lib/types'
 
@@ -21,18 +21,19 @@ export async function ProjectsGrid({ projects }: ProjectsGridProps) {
   }
 
   return (
-    <section id="proyectos" className="py-24 max-w-[1100px] mx-auto px-6">
-      <SlideUp>
-        <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-bold text-primary mb-3">
-          {t('projects')}
-        </h2>
-      </SlideUp>
+    <section id="proyectos" className="py-24 max-w-[1200px] mx-auto px-5 md:px-20 border-b border-default">
+      <SectionHeading number="01" title={t('projects')} />
       <FadeIn delay={0.1}>
         <p className="text-muted text-lg mb-12">{t('projects_subtitle')}</p>
       </FadeIn>
-      <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <AnimatedProjectCard key={project.id} project={project} labels={labels} />
+      <StaggerChildren className="flex flex-col border-b border-default">
+        {projects.map((project, i) => (
+          <AnimatedProjectCard
+            key={project.id}
+            project={project}
+            index={String(i + 1).padStart(2, '0')}
+            labels={labels}
+          />
         ))}
       </StaggerChildren>
     </section>

@@ -1,43 +1,57 @@
 @import "tailwindcss";
 
-/* ── Design tokens ── */
+/* ── Design tokens — Technical Brutalist ── */
 @theme {
   /* Typography */
-  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Colors — light mode (default) */
-  --color-background: #f6f9fc;
-  --color-surface:    #ffffff;
-  --color-border:     #dde6ef;
-  --color-text:       #0d1b2a;
-  --color-muted:      #5a7a96;
-  --color-accent:     #0284c7;
-  --color-accent-hover: #0369a1;
-  --color-accent-dim: #e0f2fe;
+  /* Colors — light mode (default), adapted from v1 */
+  --color-background:    #f6f9fc;
+  --color-surface:       #ffffff;
+  --color-surface-hover: #eef3f8;
+  --color-border:        #dde6ef;
+  --color-text:          #0d1b2a;
+  --color-muted:         #4a6580;
+  --color-accent:        #0369a1;
+  --color-accent-hover:  #075985;
+  --color-accent-dim:    #e0f2fe;
 }
 
-/* Dark mode — overrides tokens when .dark is on <html> */
+/* Dark mode (canonical) — overrides tokens when .dark is on <html> */
 .dark {
-  --color-background: #080c10;
-  --color-surface:    #0e1520;
-  --color-border:     #1c2a3a;
-  --color-text:       #eef2f7;
-  --color-muted:      #6b87a0;
-  --color-accent:     #38bdf8;
-  --color-accent-hover: #7dd3fc;
-  --color-accent-dim: #0c2a3d;
+  --color-background:    #131314;
+  --color-surface:       #1c1b1c;
+  --color-surface-hover: #242324;
+  --color-border:        #2a3438;
+  --color-text:          #e5e2e3;
+  --color-muted:         #9aacae;
+  --color-accent:        #00dce5;
+  --color-accent-hover:  #63f7ff;
+  --color-accent-dim:    #0d2e30;
 }
 
 /* ── Semantic color utilities ── */
 @layer utilities {
-  .bg-background  { background-color: var(--color-background); }
-  .bg-surface     { background-color: var(--color-surface); }
-  .bg-accent-dim  { background-color: var(--color-accent-dim); }
-  .text-primary   { color: var(--color-text); }
-  .text-muted     { color: var(--color-muted); }
-  .text-accent    { color: var(--color-accent); }
-  .border-default { border-color: var(--color-border); }
+  .bg-background    { background-color: var(--color-background); }
+  .bg-surface       { background-color: var(--color-surface); }
+  .bg-surface-hover { background-color: var(--color-surface-hover); }
+  .bg-accent-dim    { background-color: var(--color-accent-dim); }
+  .text-primary     { color: var(--color-text); }
+  .text-muted       { color: var(--color-muted); }
+  .text-accent      { color: var(--color-accent); }
+  .border-default   { border-color: var(--color-border); }
+
+  .font-display     { font-family: var(--font-display); }
+  .font-sans        { font-family: var(--font-sans); }
+  .font-mono        { font-family: var(--font-mono); }
+
+  /* Wireframe hero background: dark-mode only.
+     Uses `.dark .wireframe-bg` (specificity 0,2,0) so it reliably beats
+     `.hidden` — avoids the Tailwind v4 `dark:` `:where()` zero-specificity gotcha. */
+  .wireframe-bg      { display: none; }
+  .dark .wireframe-bg { display: block; }
 }
 
 /* ── Base ── */

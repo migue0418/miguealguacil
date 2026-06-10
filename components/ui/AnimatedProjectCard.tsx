@@ -6,6 +6,7 @@ import type { Project } from '@/lib/types'
 
 interface AnimatedProjectCardProps {
   project: Project
+  index: string
   labels: {
     viewRepo: string
     viewBackend: string
@@ -14,10 +15,10 @@ interface AnimatedProjectCardProps {
   }
 }
 
-export function AnimatedProjectCard({ project, labels }: AnimatedProjectCardProps) {
+export function AnimatedProjectCard({ project, index, labels }: AnimatedProjectCardProps) {
   return (
-    <motion.div variants={staggerItem} className="h-full">
-      <ProjectCard project={project} labels={labels} />
+    <motion.div variants={staggerItem}>
+      <ProjectCard project={project} index={index} labels={labels} />
     </motion.div>
   )
 }
