@@ -41,7 +41,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-background text-primary min-h-screen">
+      <body
+        suppressHydrationWarning
+        className="bg-background text-primary min-h-screen"
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
