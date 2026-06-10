@@ -45,7 +45,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className="bg-background text-primary min-h-screen"
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>
       </body>
