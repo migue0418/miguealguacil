@@ -25,6 +25,9 @@
 config.yaml
 openspec
 
+# temporary design references (Stitch exports, not part of the build)
+/web_design
+
 # misc
 .DS_Store
 *.pem
