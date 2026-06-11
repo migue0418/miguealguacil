@@ -6,7 +6,7 @@ export const projects: Project[] = [
     name: 'Minecraft Butler AI',
     description:
       'Agente LLM integrado en Minecraft a través de un mod personalizado. El backend gestiona el contexto del juego en tiempo real mediante WebSocket y ejecuta acciones dentro del mundo usando LangGraph.',
-    stack: ['Python', 'FastAPI', 'LangChain', 'LangGraph', 'WebSocket', 'Java'],
+    stack: ['Python', 'FastAPI', 'LangChain', 'LangGraph', 'RAG', 'WebSocket', 'Java'],
     repoUrls: [
       { label: 'Backend', url: 'https://github.com/migue0418/minecraft-butler-ai-backend' },
       { label: 'Mod', url: 'https://github.com/migue0418/minecraft-butler-ai-mod' },
