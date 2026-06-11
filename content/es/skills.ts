@@ -49,7 +49,7 @@ export const skills: SkillCategory[] = [
     category: 'Idiomas',
     skills: [
       { name: 'Español (Nativo)', icon: 'Languages' },
-      { name: 'Inglés (C1 - Cambridge)', icon: 'Globe' },
+      { name: 'Inglés (C1)', icon: 'Globe' },
     ],
   },
 ]
