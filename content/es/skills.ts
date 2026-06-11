@@ -10,8 +10,6 @@ export const skills: SkillCategory[] = [
       { name: 'RAG', icon: 'Database' },
       { name: 'PyTorch', icon: 'Flame' },
       { name: 'TensorFlow', icon: 'Hexagon' },
-      { name: 'Milvus', icon: 'Boxes' },
-      { name: 'Qdrant', icon: 'Layers' },
     ],
   },
   {
@@ -26,6 +24,17 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
+    id: 'databases',
+    category: 'Bases de Datos',
+    skills: [
+      { name: 'SQL Server', icon: 'Server' },
+      { name: 'MySQL', icon: 'Database' },
+      { name: 'MongoDB', icon: 'Leaf' },
+      { name: 'Milvus', icon: 'Boxes' },
+      { name: 'Qdrant', icon: 'Layers' },
+    ],
+  },
+  {
     id: 'tools',
     category: 'Herramientas',
     skills: [
@@ -33,6 +42,14 @@ export const skills: SkillCategory[] = [
       { name: 'Git', icon: 'GitBranch' },
       { name: 'GCP', icon: 'Cloud' },
       { name: 'Azure', icon: 'CloudCog' },
+    ],
+  },
+  {
+    id: 'languages',
+    category: 'Idiomas',
+    skills: [
+      { name: 'Español (Nativo)', icon: 'Languages' },
+      { name: 'Inglés (C1 - Cambridge)', icon: 'Globe' },
     ],
   },
 ]

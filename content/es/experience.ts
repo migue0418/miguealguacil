@@ -9,10 +9,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2026-04',
     location: 'Granada, España',
     bullets: [
-      'Diseño y desarrollo de agentes LLM con LangChain y LangGraph (arquitectura multiagente)',
-      'Desarrollo desde cero con Python (FastAPI) + ReactJS, aplicando buenas prácticas (pre-commit, Git Flow)',
-      'Pipelines RAG con Milvus y Qdrant',
-      'Monitorización con logging estructurado y dashboards',
+      'Diseño y desarrollo de agentes LLM con LangChain y LangGraph, siguiendo una arquitectura multiagente y separación por capas (Clean Architecture), integrados en canales como WhatsApp, Microsoft Teams y una interfaz web.',
+      'Desarrollo de proyectos desde cero en Python (FastAPI) + ReactJS, aplicando buenas prácticas: arquitectura modular, tipado, validación, manejo de errores y trazabilidad (pre-commit, Git Flow).',
+      'Implementación de pipelines de extracción y transformación de datos en Python para alimentar el RAG, indexando en bases de datos vectoriales (Milvus/Qdrant).',
+      'Monitorización de modelos y agentes basada en logging y seguimiento con dashboards para control de rendimiento, errores y uso.',
     ],
   },
   {
@@ -23,9 +23,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2024-11',
     location: 'Granada, España',
     bullets: [
-      'Liderazgo de equipo multidisciplinario de software y datos',
-      'Implementación de metodologías ágiles',
-      'Base de datos centralizada MySQL/BigQuery + pipelines ETL en Python',
+      'Liderar un equipo multidisciplinario de software y data, asegurando la entrega de proyectos de alta calidad alineados con los objetivos de la empresa.',
+      'Coordinar la comunicación del equipo con los distintos departamentos, garantizando que las expectativas y requerimientos de cada proyecto se cumplan de manera eficiente.',
+      'Implementar metodologías ágiles para optimizar el flujo de trabajo, mejorar la colaboración del equipo y reducir los tiempos de entrega.',
+      'Diseño y mantenimiento de una BBDD centralizada (MySQL/BigQuery) y desarrollo de pipelines ETL en Python para ingestar y unificar datos desde herramientas analíticas y otras BBDDs internas.',
     ],
   },
   {
@@ -36,9 +37,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2023-10',
     location: 'Granada, España',
     bullets: [
-      'Proyecto de traducción automática con NLP',
-      'Plataforma centralizada con IA para gestión de contenidos',
-      'Sistema sincronizador de productos entre bases de datos',
+      'Implementar un proyecto de traducción automática de texto, video e imágenes, utilizando técnicas avanzadas de procesamiento del lenguaje natural (NLP).',
+      'Colaborar con el departamento de marketing para realizar análisis de las webs, detectando incongruencias en los contenidos mediante el uso de conectores analíticos.',
+      'Diseñar y desarrollar una plataforma centralizada alimentada con IA, destinada a albergar los contenidos de todas las webs del grupo, optimizando la gestión y distribución de información.',
+      'Diseñar un sistema sincronizador de información de productos entre distintas bases de datos, garantizando la coherencia y actualización de datos en la plataforma central.',
     ],
   },
   {
@@ -49,9 +51,9 @@ export const experience: ExperienceItem[] = [
     endDate: '2022-08',
     location: 'Granada, España',
     bullets: [
-      'Diseño de bases de datos SQL',
-      'APIs en Python (FastAPI)',
-      'Desarrollo PHP (Laravel, Phalcon) + CRM',
+      'Diseñar bases de datos SQL, asegurando una estructura eficiente y escalable.',
+      'Desarrollar APIs en Python (FastAPI), facilitando la comunicación y la integración entre sistemas.',
+      'Apoyar en el desarrollo de proyectos de software utilizando PHP (Laravel y Phalcon), así como en el desarrollo del CRM de la empresa.',
     ],
   },
   {
@@ -62,7 +64,7 @@ export const experience: ExperienceItem[] = [
     endDate: '2021-10',
     location: 'Granada, España',
     bullets: [
-      'Desarrollo y mantenimiento con CMS WordPress y Drupal',
+      'Gestionar y mantener CMS (WordPress y Drupal), incluyendo la implementación de nuevas funcionalidades en Drupal para mejorar la estabilidad y la usabilidad de las plataformas web.',
     ],
   },
 ]

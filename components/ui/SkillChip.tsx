@@ -15,6 +15,10 @@ import {
   GitBranch,
   Cloud,
   CloudCog,
+  Server,
+  Leaf,
+  Languages,
+  Globe,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -35,6 +39,10 @@ const ICON_MAP: Record<string, LucideIcon> = {
   GitBranch,
   Cloud,
   CloudCog,
+  Server,
+  Leaf,
+  Languages,
+  Globe,
 }
 
 interface SkillChipProps {

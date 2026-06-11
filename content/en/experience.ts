@@ -9,10 +9,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2026-04',
     location: 'Granada, Spain',
     bullets: [
-      'Design and development of LLM agents with LangChain and LangGraph (multi-agent architecture)',
-      'Full-stack development with Python (FastAPI) + ReactJS, applying best practices (pre-commit, Git Flow)',
-      'RAG pipelines with Milvus and Qdrant',
-      'Monitoring with structured logging and dashboards',
+      'Design and development of LLM agents using LangChain and LangGraph, following a multi-agent architecture with layer separation (Clean Architecture), integrated into channels such as WhatsApp, Microsoft Teams, and a web interface.',
+      'End-to-end project development in Python (FastAPI) + ReactJS, applying best practices: modular architecture, typing, validation, error handling, and traceability (pre-commit, Git Flow).',
+      'Implementation of data extraction and transformation pipelines in Python to feed the RAG system, indexing into vector databases (Milvus/Qdrant).',
+      'Model and agent monitoring based on logging and dashboards for tracking performance, errors, and usage.',
     ],
   },
   {
@@ -23,9 +23,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2024-11',
     location: 'Granada, Spain',
     bullets: [
-      'Leadership of a multidisciplinary software and data team',
-      'Implementation of agile methodologies',
-      'Centralized MySQL/BigQuery database + Python ETL pipelines',
+      'Leadership of a multidisciplinary software and data team, ensuring delivery of high-quality projects aligned with company objectives.',
+      'Implemented agile methodologies  to optimise workflow, improve team collaboration, and reduce delivery times.',
+      'Designed and maintained a centralised database (MySQL/BigQuery) and developed ETL pipelines in Python to ingest and unify data from analytics tools and other internal databases.',
+      'Coordinated team communication with different departments, ensuring that expectations and project requirements were met efficiently.',
     ],
   },
   {
@@ -36,9 +37,10 @@ export const experience: ExperienceItem[] = [
     endDate: '2023-10',
     location: 'Granada, Spain',
     bullets: [
-      'Automatic translation project using NLP',
-      'Centralized AI-powered platform for content management',
-      'Product synchronizer system between databases',
+      'Implemented an automatic translation project for text, video, and images using advanced NLP techniques.',
+      'Collaborated with the marketing department to analyse websites, detecting content inconsistencies using analytics connectors.',
+      'Designed and developed an AI-powered centralised platform to host content from all group websites, optimising information management and distribution.',
+      'Designed a product information synchronisation system across different databases, ensuring data consistency and currency throughout the central platform.',
     ],
   },
   {
@@ -49,9 +51,9 @@ export const experience: ExperienceItem[] = [
     endDate: '2022-08',
     location: 'Granada, Spain',
     bullets: [
-      'SQL database design',
-      'APIs in Python (FastAPI)',
-      'PHP development (Laravel, Phalcon) + CRM',
+      'Designed SQL databases, ensuring efficient and scalable data structures.',
+      'Developed APIs in Python (FastAPI), facilitating communication and integration between systems.',
+      'Supported software project development using PHP (Laravel and Phalcon), as well as contributing to the company\'s CRM development.',
     ],
   },
   {
@@ -62,7 +64,7 @@ export const experience: ExperienceItem[] = [
     endDate: '2021-10',
     location: 'Granada, Spain',
     bullets: [
-      'Development and maintenance with WordPress and Drupal CMS',
+      'Managed and maintained CMS platforms (WordPress and Drupal), including the implementation of new features in Drupal to improve platform stability and usability.',
     ],
   },
 ]
