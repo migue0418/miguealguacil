@@ -27,11 +27,11 @@ export const skills: SkillCategory[] = [
     id: 'databases',
     category: 'Databases',
     skills: [
-      { name: 'SQL Server', icon: 'Server' },
-      { name: 'MySQL', icon: 'Database' },
-      { name: 'MongoDB', icon: 'Leaf' },
       { name: 'Milvus', icon: 'Boxes' },
       { name: 'Qdrant', icon: 'Layers' },
+      { name: 'SQL Server', icon: 'Server' },
+      { name: 'MongoDB', icon: 'Leaf' },
+      { name: 'MySQL', icon: 'Database' },
     ],
   },
   {
