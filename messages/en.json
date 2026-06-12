@@ -51,6 +51,13 @@
     "view_repo": "View repository",
     "view_demo": "View demo",
     "view_backend": "Backend",
-    "view_mod": "Mod"
+    "view_mod": "Mod",
+    "view_details": "View details"
+  },
+  "projectDetail": {
+    "back": "Back to projects",
+    "overview": "Overview",
+    "results": "Results",
+    "links": "Links"
   }
 }

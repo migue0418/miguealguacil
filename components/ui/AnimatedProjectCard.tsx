@@ -12,6 +12,7 @@ interface AnimatedProjectCardProps {
     viewBackend: string
     viewMod: string
     viewDemo: string
+    viewDetails: string
   }
 }
 

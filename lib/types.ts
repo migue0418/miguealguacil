@@ -9,6 +9,28 @@ export interface PersonalInfo {
   cvUrl: string
 }
 
+export interface ProjectDetailSection {
+  heading: string
+  paragraphs: string[]
+}
+
+export interface ProjectDetailResult {
+  label: string
+  value: string
+}
+
+export interface ProjectDetailLink {
+  label: string
+  url: string
+}
+
+export interface ProjectDetail {
+  summary: string[]
+  sections?: ProjectDetailSection[]
+  results?: ProjectDetailResult[]
+  links?: ProjectDetailLink[]
+}
+
 export interface Project {
   id: string
   name: string
@@ -18,6 +40,7 @@ export interface Project {
   repoUrls?: { label: string; url: string }[]
   demoUrl?: string
   featured: boolean
+  detail?: ProjectDetail
 }
 
 export interface ExperienceItem {
