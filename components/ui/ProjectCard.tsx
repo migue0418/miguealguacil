@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import type { Project } from '@/lib/types'
 
 interface ProjectCardProps {
@@ -9,6 +10,7 @@ interface ProjectCardProps {
     viewBackend: string
     viewMod: string
     viewDemo: string
+    viewDetails: string
   }
 }
 
@@ -25,8 +27,15 @@ export function ProjectCard({ project, index, labels }: ProjectCardProps) {
   }
   if (project.demoUrl) links.push({ label: labels.viewDemo, url: project.demoUrl })
 
+  const detailHref = {
+    pathname: '/proyectos/[projectId]' as const,
+    params: { projectId: project.id },
+  }
+
   return (
-    <article className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-8 border-t border-default hover:bg-surface-hover transition-colors px-2 -mx-2">
+    <article className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-8 border-t border-default hover:bg-surface-hover transition-colors px-2 -mx-2">
+      <Link href={detailHref} aria-hidden="true" tabIndex={-1} className="absolute inset-0" />
+
       <div className="md:col-span-1 font-mono text-accent text-sm">{index}</div>
 
       <div className="md:col-span-5 flex flex-col gap-3">
@@ -45,11 +54,11 @@ export function ProjectCard({ project, index, labels }: ProjectCardProps) {
         </div>
       </div>
 
-      <div className="md:col-span-5 bg-background shadow-inner rounded p-4 font-mono text-sm text-muted leading-relaxed">
+      <div className="md:col-span-4 bg-background shadow-inner rounded p-4 font-mono text-sm text-muted leading-relaxed">
         {project.description}
       </div>
 
-      <div className="md:col-span-1 flex md:flex-col flex-row flex-wrap gap-3 md:items-end items-start">
+      <div className="md:col-span-2 flex md:flex-col flex-row flex-wrap gap-3 md:items-end items-start relative z-10">
         {links.map((link) => (
           <a
             key={link.url}
@@ -63,6 +72,13 @@ export function ProjectCard({ project, index, labels }: ProjectCardProps) {
             <ArrowUpRight size={14} aria-hidden />
           </a>
         ))}
+        <Link
+          href={detailHref}
+          className="inline-flex items-center gap-1 font-mono text-xs uppercase text-accent hover:text-[var(--color-accent-hover)] transition-colors"
+        >
+          {labels.viewDetails}
+          <span aria-hidden>→</span>
+        </Link>
       </div>
     </article>
   )

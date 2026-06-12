@@ -18,6 +18,7 @@ export async function ProjectsGrid({ projects }: ProjectsGridProps) {
     viewBackend: tp('view_backend'),
     viewMod: tp('view_mod'),
     viewDemo: tp('view_demo'),
+    viewDetails: tp('view_details'),
   }
 
   return (

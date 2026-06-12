@@ -1,15 +1,23 @@
 'use client'
 import { useLocale } from 'next-intl'
+import { useParams } from 'next/navigation'
 import { useRouter, usePathname } from '@/i18n/navigation'
 
 export function LocaleToggle() {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
+  const params = useParams()
 
   function switchLocale() {
     const next = locale === 'es' ? 'en' : 'es'
-    router.replace(pathname, { locale: next })
+    router.replace(
+      // @ts-expect-error -- TypeScript will validate that only known `params`
+      // are used in combination with a given `pathname`. Since the two will
+      // always match for the current route, we can skip runtime checks.
+      { pathname, params },
+      { locale: next },
+    )
   }
 
   return (
