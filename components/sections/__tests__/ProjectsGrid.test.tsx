@@ -10,10 +10,16 @@ vi.mock('framer-motion', () => ({
   useInView: () => true,
   useReducedMotion: () => true,
 }))
+type LinkHref = string | { pathname: string; params?: Record<string, string> }
+
 vi.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, ...rest }: React.ComponentProps<'a'> & { href: string }) => (
-    <a href={href} {...rest}>{children}</a>
-  ),
+  Link: ({ children, href, ...rest }: React.ComponentProps<'a'> & { href: LinkHref }) => {
+    const resolvedHref =
+      typeof href === 'string'
+        ? href
+        : href.pathname.replace(/\[(\w+)\]/g, (_match, key: string) => href.params?.[key] ?? '')
+    return <a href={resolvedHref} {...rest}>{children}</a>
+  },
 }))
 
 const mockProjects: Project[] = [

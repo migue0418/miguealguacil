@@ -1,7 +1,8 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
+import { routing } from '@/i18n/routing'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { StaggerChildren } from '@/components/animations/StaggerChildren'
 import type { Project } from '@/lib/types'
@@ -13,6 +14,8 @@ interface ProjectDetailProps {
 export async function ProjectDetail({ project }: ProjectDetailProps) {
   const t = await getTranslations('projectDetail')
   const tp = await getTranslations('project')
+  const locale = await getLocale()
+  const backHref = locale === routing.defaultLocale ? '/#proyectos' : `/${locale}/#proyectos`
 
   const externalLinks: { label: string; url: string }[] = []
   if (project.repoUrl) externalLinks.push({ label: tp('view_repo'), url: project.repoUrl })
@@ -31,7 +34,7 @@ export async function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <article className="py-24 max-w-[1200px] mx-auto px-5 md:px-20">
       <Link
-        href="/#proyectos"
+        href={backHref}
         className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors mb-12"
       >
         <ArrowLeft size={14} aria-hidden />

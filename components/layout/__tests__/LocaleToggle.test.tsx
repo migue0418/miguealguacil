@@ -12,6 +12,10 @@ vi.mock('@/i18n/navigation', () => ({
   usePathname: () => '/',
 }))
 
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'es' }),
+}))
+
 describe('LocaleToggle', () => {
   it('renders a button', () => {
     render(<LocaleToggle />)

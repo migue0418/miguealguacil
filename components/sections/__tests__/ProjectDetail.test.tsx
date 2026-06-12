@@ -4,14 +4,15 @@ import type { Project } from '@/lib/types'
 
 vi.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => key,
+  getLocale: async () => 'es',
 }))
 vi.mock('framer-motion', () => ({
   motion: { div: ({ children, ...p }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => <div {...p}>{children}</div> },
   useInView: () => true,
   useReducedMotion: () => true,
 }))
-vi.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, ...rest }: React.ComponentProps<'a'> & { href: string }) => (
+vi.mock('next/link', () => ({
+  default: ({ children, href, ...rest }: React.ComponentProps<'a'> & { href: string }) => (
     <a href={href} {...rest}>{children}</a>
   ),
 }))

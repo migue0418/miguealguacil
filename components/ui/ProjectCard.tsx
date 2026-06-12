@@ -27,7 +27,10 @@ export function ProjectCard({ project, index, labels }: ProjectCardProps) {
   }
   if (project.demoUrl) links.push({ label: labels.viewDemo, url: project.demoUrl })
 
-  const detailHref = `/proyectos/${project.id}`
+  const detailHref = {
+    pathname: '/proyectos/[projectId]' as const,
+    params: { projectId: project.id },
+  }
 
   return (
     <article className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-8 border-t border-default hover:bg-surface-hover transition-colors px-2 -mx-2">
