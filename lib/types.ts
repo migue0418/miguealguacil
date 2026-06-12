@@ -24,10 +24,19 @@ export interface ProjectDetailLink {
   url: string
 }
 
+export interface ProjectDetailImage {
+  src: string
+  alt: string
+  caption?: string
+  width: number
+  height: number
+}
+
 export interface ProjectDetail {
   summary: string[]
   sections?: ProjectDetailSection[]
   results?: ProjectDetailResult[]
+  images?: ProjectDetailImage[]
   links?: ProjectDetailLink[]
 }
 

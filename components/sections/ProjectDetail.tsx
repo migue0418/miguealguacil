@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+import Image from 'next/image'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { FadeIn } from '@/components/animations/FadeIn'
@@ -110,6 +111,33 @@ export async function ProjectDetail({ project }: ProjectDetailProps) {
                 <span className="font-mono text-xs uppercase text-muted">{result.label}</span>
                 <span className="font-mono text-2xl text-accent">{result.value}</span>
               </div>
+            ))}
+          </StaggerChildren>
+        </div>
+      )}
+
+      {project.detail?.images && (
+        <div className="mb-16">
+          <h2 className="font-mono uppercase tracking-widest text-primary text-sm md:text-base mb-6">
+            {t('screenshots')}
+          </h2>
+          <StaggerChildren className="flex flex-col gap-8">
+            {project.detail.images.map((img) => (
+              <figure key={img.src}>
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.width}
+                  height={img.height}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className="rounded border border-default w-full h-auto"
+                />
+                {img.caption && (
+                  <figcaption className="mt-2 font-mono text-xs text-muted">
+                    {img.caption}
+                  </figcaption>
+                )}
+              </figure>
             ))}
           </StaggerChildren>
         </div>
