@@ -6,7 +6,9 @@
     "experience": "Experiencia",
     "education": "Educación",
     "contact": "Contacto",
-    "cv": "CV"
+    "cv": "CV",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "hero": {
     "cta_projects": "Ver proyectos",

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
+import type { ReactNode } from 'react'
 
 const mockLocale = vi.fn(async () => 'es')
 
@@ -23,6 +24,14 @@ vi.mock('@/lib/content', () => ({
 
 vi.mock('../Nav', () => ({
   Nav: () => <nav data-testid="nav-mock" />,
+}))
+vi.mock('../MobileNav', () => ({
+  MobileNav: () => <nav data-testid="mobile-nav-mock" />,
+}))
+vi.mock('../MobileMenuToggle', () => ({
+  MobileMenuToggle: ({ children }: { children: ReactNode }) => (
+    <div data-testid="mobile-menu-toggle-mock">{children}</div>
+  ),
 }))
 vi.mock('../ThemeToggle', () => ({
   ThemeToggle: () => <button data-testid="theme-toggle-mock" />,
