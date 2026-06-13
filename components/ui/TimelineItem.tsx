@@ -1,19 +1,27 @@
 import type { ExperienceItem } from '@/lib/types'
 
+type SupportedLocale = 'es' | 'en'
+
 interface TimelineItemProps {
   item: ExperienceItem
   presentLabel: string
+  locale: SupportedLocale
 }
 
-function formatDate(dateStr: string): string {
+const DATE_LOCALE_MAP: Record<SupportedLocale, string> = {
+  es: 'es-ES',
+  en: 'en-US',
+}
+
+function formatDate(dateStr: string, locale: SupportedLocale): string {
   const [year, month] = dateStr.split('-')
   const date = new Date(parseInt(year), parseInt(month) - 1)
-  return date.toLocaleDateString('es-ES', { month: 'short', year: 'numeric' })
+  return date.toLocaleDateString(DATE_LOCALE_MAP[locale], { month: 'short', year: 'numeric' })
 }
 
-export function TimelineItem({ item, presentLabel }: TimelineItemProps) {
-  const startFormatted = formatDate(item.startDate)
-  const endFormatted = item.endDate ? formatDate(item.endDate) : presentLabel
+export function TimelineItem({ item, presentLabel, locale }: TimelineItemProps) {
+  const startFormatted = formatDate(item.startDate, locale)
+  const endFormatted = item.endDate ? formatDate(item.endDate, locale) : presentLabel
 
   return (
     <div className="relative pl-6 border-l-2 border-default">

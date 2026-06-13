@@ -20,7 +20,7 @@ export async function Timeline({ experience }: TimelineProps) {
       <div className="space-y-10">
         {experience.map((item, i) => (
           <SlideUp key={item.id} delay={i * 0.08}>
-            <TimelineItem item={item} presentLabel={tl('present')} />
+            <TimelineItem item={item} presentLabel={tl('present')} locale={locale as 'es' | 'en'} />
           </SlideUp>
         ))}
       </div>

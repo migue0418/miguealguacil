@@ -60,5 +60,9 @@
     "results": "Resultados",
     "screenshots": "Capturas",
     "links": "Enlaces"
+  },
+  "metadata": {
+    "home_title": "miguealguacil — AI Engineer | GenAI, Agentes y Desarrollo de Producto",
+    "home_description": "Portfolio de Miguel Á. Benítez Alguacil, AI Engineer especializado en GenAI, agentes LLM y desarrollo de producto."
   }
 }
