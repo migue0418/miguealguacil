@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { getProjects } from '@/lib/content'
 import { ProjectDetail } from '@/components/sections/ProjectDetail'
 import { routing } from '@/i18n/routing'
+import { getAbsoluteUrl } from '@/lib/seo'
 
 const PROJECT_DETAIL_PATHNAME = '/proyectos/[projectId]' as const
 
@@ -47,6 +48,19 @@ export async function generateMetadata({
     description: project.description,
     alternates: {
       languages,
+    },
+    openGraph: {
+      title: project.name,
+      description: project.description,
+      url: getAbsoluteUrl(languages[locale]),
+      siteName: 'miguealguacil',
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.name,
+      description: project.description,
     },
   }
 }

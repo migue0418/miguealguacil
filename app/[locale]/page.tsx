@@ -8,6 +8,7 @@ import { Timeline } from '@/components/sections/Timeline'
 import { Education } from '@/components/sections/Education'
 import { Contact } from '@/components/sections/Contact'
 import { routing } from '@/i18n/routing'
+import { buildPersonJsonLd, getAbsoluteUrl, getLocalizedHomePath } from '@/lib/seo'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -26,11 +27,27 @@ export async function generateMetadata({
     languages[loc] = loc === routing.defaultLocale ? '/' : `/${loc}`
   }
 
+  const title = t('home_title')
+  const description = t('home_description')
+
   return {
-    title: t('home_title'),
-    description: t('home_description'),
+    title,
+    description,
     alternates: {
       languages,
+    },
+    openGraph: {
+      title,
+      description,
+      url: getAbsoluteUrl(getLocalizedHomePath(locale)),
+      siteName: 'miguealguacil',
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      type: 'profile',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
   }
 }
@@ -51,8 +68,16 @@ export default async function HomePage({
     getSkills(locale),
   ])
 
+  const personJsonLd = buildPersonJsonLd(locale, personal)
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <Hero personal={personal} />
       <ProjectsGrid projects={projects} />
       <TechStack skills={skills} />

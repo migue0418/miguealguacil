@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { SITE_URL } from '@/lib/seo'
 import '../globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -32,14 +33,17 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://miguealguacil.com'),
+  metadataBase: new URL(SITE_URL),
   title: 'miguealguacil — AI Engineer',
   description:
     'Portfolio de Miguel Á. Benítez Alguacil, AI Engineer especializado en GenAI, agentes LLM y desarrollo de producto.',
 }
 
 export const viewport: Viewport = {
-  themeColor: '#131314',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f6f9fc' },
+    { media: '(prefers-color-scheme: dark)', color: '#131314' },
+  ],
 }
 
 export default async function RootLayout({
