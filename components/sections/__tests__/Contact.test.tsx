@@ -2,8 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import type { PersonalInfo } from '@/lib/types'
 
+const mockLocale = vi.fn(async () => 'es')
+
 vi.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => key,
+  getLocale: () => mockLocale(),
 }))
 vi.mock('framer-motion', () => ({
   motion: {
@@ -49,5 +52,19 @@ describe('Contact', () => {
     const links = screen.getAllByRole('link')
     const hrefs = links.map(l => l.getAttribute('href'))
     expect(hrefs.some(h => h?.includes('github'))).toBe(true)
+  })
+
+  it('renders the section with the localized anchor id (es)', async () => {
+    mockLocale.mockResolvedValue('es')
+    const { Contact } = await import('../Contact')
+    const { container } = render(await Contact({ personal: mockPersonal }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'contacto')
+  })
+
+  it('renders the section with the localized anchor id (en)', async () => {
+    mockLocale.mockResolvedValue('en')
+    const { Contact } = await import('../Contact')
+    const { container } = render(await Contact({ personal: mockPersonal }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'contact')
   })
 })

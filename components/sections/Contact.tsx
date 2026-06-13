@@ -1,7 +1,8 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { MagneticButton } from '@/components/animations/MagneticButton'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { getSectionAnchorId } from '@/lib/navigation'
 import type { PersonalInfo } from '@/lib/types'
 
 interface ContactProps {
@@ -11,9 +12,10 @@ interface ContactProps {
 export async function Contact({ personal }: ContactProps) {
   const t = await getTranslations('sections')
   const tc = await getTranslations('contact')
+  const locale = await getLocale()
 
   return (
-    <section id="contacto" className="py-24 max-w-[1200px] mx-auto px-5 md:px-20">
+    <section id={getSectionAnchorId(locale, 'contact')} className="py-24 max-w-[1200px] mx-auto px-5 md:px-20">
       <SectionHeading number="05" title={t('contact')} />
       <FadeIn delay={0.1}>
         <p className="text-muted text-lg max-w-lg mb-12">{t('contact_invite')}</p>

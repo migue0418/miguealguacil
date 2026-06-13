@@ -1,8 +1,9 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { ArrowUpRight } from 'lucide-react'
 import { SlideUp } from '@/components/animations/SlideUp'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { getSectionAnchorId } from '@/lib/navigation'
 import type { EducationData } from '@/lib/types'
 
 interface EducationProps {
@@ -12,9 +13,10 @@ interface EducationProps {
 export async function Education({ data }: EducationProps) {
   const t = await getTranslations('sections')
   const te = await getTranslations('education')
+  const locale = await getLocale()
 
   return (
-    <section id="educacion" className="py-24 max-w-[1200px] mx-auto px-5 md:px-20 border-b border-default">
+    <section id={getSectionAnchorId(locale, 'education')} className="py-24 max-w-[1200px] mx-auto px-5 md:px-20 border-b border-default">
       <SectionHeading number="04" title={t('education')} />
 
       <div className="space-y-6 mb-16">

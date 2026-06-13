@@ -2,7 +2,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
-import { routing } from '@/i18n/routing'
+import { getSectionHref } from '@/lib/navigation'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { StaggerChildren } from '@/components/animations/StaggerChildren'
 import type { Project } from '@/lib/types'
@@ -15,7 +15,7 @@ export async function ProjectDetail({ project }: ProjectDetailProps) {
   const t = await getTranslations('projectDetail')
   const tp = await getTranslations('project')
   const locale = await getLocale()
-  const backHref = locale === routing.defaultLocale ? '/#proyectos' : `/${locale}/#proyectos`
+  const backHref = getSectionHref(locale, 'projects')
 
   const externalLinks: { label: string; url: string }[] = []
   if (project.repoUrl) externalLinks.push({ label: tp('view_repo'), url: project.repoUrl })

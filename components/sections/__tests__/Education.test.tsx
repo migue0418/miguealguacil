@@ -2,8 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import type { EducationData } from '@/lib/types'
 
+const mockLocale = vi.fn(async () => 'es')
+
 vi.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => key,
+  getLocale: () => mockLocale(),
 }))
 vi.mock('framer-motion', () => ({
   motion: { div: ({ children, ...p }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => <div {...p}>{children}</div> },
@@ -27,5 +30,19 @@ describe('Education', () => {
     const { Education } = await import('../Education')
     render(await Education({ data: mockEducation }))
     expect(screen.getByText('Test Cert')).toBeInTheDocument()
+  })
+
+  it('renders the section with the localized anchor id (es)', async () => {
+    mockLocale.mockResolvedValue('es')
+    const { Education } = await import('../Education')
+    const { container } = render(await Education({ data: mockEducation }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'educacion')
+  })
+
+  it('renders the section with the localized anchor id (en)', async () => {
+    mockLocale.mockResolvedValue('en')
+    const { Education } = await import('../Education')
+    const { container } = render(await Education({ data: mockEducation }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'education')
   })
 })

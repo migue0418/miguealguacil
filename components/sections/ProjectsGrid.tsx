@@ -1,8 +1,9 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { StaggerChildren } from '@/components/animations/StaggerChildren'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { AnimatedProjectCard } from '@/components/ui/AnimatedProjectCard'
+import { getSectionAnchorId } from '@/lib/navigation'
 import type { Project } from '@/lib/types'
 
 interface ProjectsGridProps {
@@ -12,6 +13,7 @@ interface ProjectsGridProps {
 export async function ProjectsGrid({ projects }: ProjectsGridProps) {
   const t = await getTranslations('sections')
   const tp = await getTranslations('project')
+  const locale = await getLocale()
 
   const labels = {
     viewRepo: tp('view_repo'),
@@ -22,7 +24,7 @@ export async function ProjectsGrid({ projects }: ProjectsGridProps) {
   }
 
   return (
-    <section id="proyectos" className="py-24 max-w-[1200px] mx-auto px-5 md:px-20 border-b border-default">
+    <section id={getSectionAnchorId(locale, 'projects')} className="py-24 max-w-[1200px] mx-auto px-5 md:px-20 border-b border-default">
       <SectionHeading number="01" title={t('projects')} />
       <FadeIn delay={0.1}>
         <p className="text-muted text-lg mb-12">{t('projects_subtitle')}</p>

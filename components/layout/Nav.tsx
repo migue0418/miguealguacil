@@ -1,25 +1,22 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
+import { getSectionHref } from '@/lib/navigation'
+import type { SectionKey } from '@/lib/navigation'
 
-const NAV_ITEMS = [
-  { key: 'projects', href: '#proyectos' },
-  { key: 'stack', href: '#stack' },
-  { key: 'experience', href: '#experiencia' },
-  { key: 'education', href: '#educacion' },
-  { key: 'contact', href: '#contacto' },
-] as const
+const NAV_ITEMS: SectionKey[] = ['projects', 'stack', 'experience', 'education', 'contact']
 
 export async function Nav() {
   const t = await getTranslations('nav')
+  const locale = await getLocale()
 
   return (
     <nav className="hidden md:flex items-center gap-6">
-      {NAV_ITEMS.map((item) => (
+      {NAV_ITEMS.map((key) => (
         <a
-          key={item.key}
-          href={item.href}
+          key={key}
+          href={getSectionHref(locale, key)}
           className="font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors"
         >
-          {t(item.key)}
+          {t(key)}
         </a>
       ))}
     </nav>

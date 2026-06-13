@@ -2,8 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import type { Project } from '@/lib/types'
 
+const mockLocale = vi.fn(async () => 'es')
+
 vi.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => key,
+  getLocale: () => mockLocale(),
 }))
 vi.mock('framer-motion', () => ({
   motion: { div: ({ children, ...p }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => <div {...p}>{children}</div> },
@@ -48,5 +51,19 @@ describe('ProjectsGrid', () => {
     expect(links).toHaveLength(2)
     expect(links[0]).toHaveAttribute('href', '/proyectos/p1')
     expect(links[1]).toHaveAttribute('href', '/proyectos/p2')
+  })
+
+  it('renders the section with the localized anchor id (es)', async () => {
+    mockLocale.mockResolvedValue('es')
+    const { ProjectsGrid } = await import('../ProjectsGrid')
+    const { container } = render(await ProjectsGrid({ projects: mockProjects }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'proyectos')
+  })
+
+  it('renders the section with the localized anchor id (en)', async () => {
+    mockLocale.mockResolvedValue('en')
+    const { ProjectsGrid } = await import('../ProjectsGrid')
+    const { container } = render(await ProjectsGrid({ projects: mockProjects }))
+    expect(container.querySelector('section')).toHaveAttribute('id', 'projects')
   })
 })
