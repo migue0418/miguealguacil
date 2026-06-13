@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 interface SlideUpProps {
   children: React.ReactNode
@@ -9,9 +9,23 @@ interface SlideUpProps {
 }
 
 export function SlideUp({ children, delay = 0, className }: SlideUpProps) {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-50px' })
   const prefersReduced = useReducedMotion()
+  const [shouldAnimate, setShouldAnimate] = useState(false)
+
+  useLayoutEffect(() => {
+    if (prefersReduced) return
+    const el = ref.current
+    if (!el) return
+
+    const rect = el.getBoundingClientRect()
+    const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0
+    if (!alreadyVisible) {
+      setShouldAnimate(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (prefersReduced) {
     return <div ref={ref} className={className}>{children}</div>
@@ -20,8 +34,8 @@ export function SlideUp({ children, delay = 0, className }: SlideUpProps) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      initial={shouldAnimate ? { opacity: 0, y: 24 } : false}
+      animate={shouldAnimate ? (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }) : undefined}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
       className={className}
     >
