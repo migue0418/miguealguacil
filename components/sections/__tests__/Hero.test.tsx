@@ -2,8 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import type { PersonalInfo } from '@/lib/types'
 
+const mockLocale = vi.fn(async () => 'es')
+
 vi.mock('next-intl/server', () => ({
   getTranslations: async () => (key: string) => key,
+  getLocale: () => mockLocale(),
 }))
 vi.mock('framer-motion', () => ({
   motion: { div: ({ children, ...p }: React.HTMLAttributes<HTMLDivElement> & { children?: React.ReactNode }) => <div {...p}>{children}</div> },
@@ -49,5 +52,21 @@ describe('Hero', () => {
     const cvLink = screen.getByRole('link', { name: 'cta_cv' })
     expect(cvLink).toHaveAttribute('href', '/cv/cv-miguel-benitez-es.pdf')
     expect(cvLink).toHaveAttribute('download')
+  })
+
+  it('renders cta_projects and cta_contact hrefs as home anchors for the default locale (es)', async () => {
+    mockLocale.mockResolvedValue('es')
+    const { Hero } = await import('../Hero')
+    render(await Hero({ personal: mockPersonal }))
+    expect(screen.getByRole('link', { name: 'cta_projects' })).toHaveAttribute('href', '/#proyectos')
+    expect(screen.getByRole('link', { name: 'cta_contact' })).toHaveAttribute('href', '/#contacto')
+  })
+
+  it('renders cta_projects and cta_contact hrefs as locale-prefixed home anchors for non-default locale (en)', async () => {
+    mockLocale.mockResolvedValue('en')
+    const { Hero } = await import('../Hero')
+    render(await Hero({ personal: mockPersonal }))
+    expect(screen.getByRole('link', { name: 'cta_projects' })).toHaveAttribute('href', '/en#projects')
+    expect(screen.getByRole('link', { name: 'cta_contact' })).toHaveAttribute('href', '/en#contact')
   })
 })

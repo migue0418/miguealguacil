@@ -1,8 +1,9 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { SlideUp } from '@/components/animations/SlideUp'
 import { FadeIn } from '@/components/animations/FadeIn'
 import { MagneticButton } from '@/components/animations/MagneticButton'
 import { WireframeBackground } from '@/components/ui/WireframeBackground'
+import { getSectionHref } from '@/lib/navigation'
 import type { PersonalInfo } from '@/lib/types'
 
 interface HeroProps {
@@ -11,6 +12,7 @@ interface HeroProps {
 
 export async function Hero({ personal }: HeroProps) {
   const t = await getTranslations('hero')
+  const locale = await getLocale()
 
   return (
     <section
@@ -43,7 +45,7 @@ export async function Hero({ personal }: HeroProps) {
           <div className="flex gap-4 flex-wrap">
             <MagneticButton>
               <a
-                href="#proyectos"
+                href={getSectionHref(locale, 'projects')}
                 className="inline-flex items-center gap-2 bg-accent text-background font-mono uppercase tracking-wide text-sm font-medium px-6 py-3 rounded-none hover:bg-[var(--color-accent-hover)] transition-colors"
               >
                 {t('cta_projects')}
@@ -51,7 +53,7 @@ export async function Hero({ personal }: HeroProps) {
             </MagneticButton>
             <MagneticButton>
               <a
-                href="#contacto"
+                href={getSectionHref(locale, 'contact')}
                 className="inline-flex items-center gap-2 border border-default text-primary font-mono uppercase tracking-wide text-sm font-medium px-6 py-3 rounded-none hover:bg-surface-hover transition-colors"
               >
                 {t('cta_contact')}
