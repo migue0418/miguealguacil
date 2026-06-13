@@ -14,7 +14,7 @@ export const projects: Project[] = [
     featured: true,
     detail: {
       summary: [
-        'MinecraftButlerAI is a FastAPI backend that brings a butler ("Alfred") to life inside Minecraft: it understands natural-language questions —by text or by voice—, answers with real game knowledge, and executes in-world actions. It is not "a single LLM call": it is an agentic architecture where each piece solves a concrete problem, from intent routing to knowledge retrieval and voice synthesis.',
+        'MinecraftButlerAI is a FastAPI backend that brings a butler ("Alfred") to life inside Minecraft: it understands natural-language questions (by text or by voice), answers with real game knowledge, and executes in-world actions. Rather than a single LLM call, it\'s an agentic architecture where each piece solves a concrete problem, from intent routing to knowledge retrieval and voice synthesis.',
         'The butler combines a LangGraph agent with persistent memory, a multilingual RAG system over the game documentation, and a local voice pipeline, all exposed through a JWT-authenticated HTTP API designed for production (rate-limiting, migrations, observability).',
       ],
       sections: [
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     detail: {
       summary: [
         'Sexism on social media shows up both explicitly and implicitly, which makes automatic moderation hard: current systems often confuse sexist content with posts that simply report or criticize it, and performance drops sharply when moving from one domain (e.g. Twitter) to another (e.g. forums or Reddit).',
-        'This thesis starts from the hypothesis that a BERT-style model fine-tuned specifically for this task can be competitive with, or even outperform, general-purpose LLMs used in zero-shot or few-shot settings, even when the training data is significantly reduced.',
+        'This thesis starts from the hypothesis that a BERT-style model fine-tuned specifically for this task can be competitive with, or even outperform, general-purpose LLMs used in zero-shot or few-shot settings, while needing significantly less training data.',
       ],
       sections: [
         {
@@ -93,10 +93,10 @@ export const projects: Project[] = [
         {
           heading: 'Web Application',
           paragraphs: [
-            'The binary ModernBERT-base model (trained on reduced_10k) was integrated into a full-stack application that demonstrates its use in a real scenario: a FastAPI microservice with a React frontend, SQLite persistence, and JWT authentication with three roles — admin (full management of users and roles), sexism_detection (run and view analyses), and analytics (read-only access to analytics).',
+            'The binary ModernBERT-base model (trained on reduced_10k) was integrated into a full-stack application that demonstrates its use in a real scenario: a FastAPI microservice with a React frontend, SQLite persistence, and JWT authentication with three roles: admin (full management of users and roles), sexism_detection (run and view analyses), and analytics (read-only access to analytics).',
             'The sexism detector offers three analysis modes: free text (split into sentences, with an overall result and a per-sentence breakdown), URL (analyzes the text content of a page, with an optional filter by HTML tag), and full domain (respects robots.txt, locates the sitemap.xml, extracts indexable URLs, and runs inference on them in parallel).',
             'The analytics module consolidates results in three views: a global dashboard (analyzed URLs and sentences, estimated sexism %, top-5 most sexist sentences, and a severity histogram), a list of analyzed domains, and a paginated list of URLs per domain with access to the sentence-by-sentence detail of each one.',
-            "As a proof of concept, the University of Granada's main portal (www.ugr.es) was analyzed: across 590 URLs and 12,643 sentences, only 22 sentences (≈0.002%) were flagged as sexist, and manual review confirmed they were false positives (sentences talking about gender discrimination, not perpetrating it) — the expected result for an institutional website, and a sign that the model does not over-flag content indiscriminately.",
+            "As a proof of concept, the University of Granada's main portal (www.ugr.es) was analyzed: across 590 URLs and 12,643 sentences, only 22 sentences (≈0.002%) were flagged as sexist, and manual review confirmed they were false positives (sentences talking about gender discrimination, not perpetrating it). That's the expected result for an institutional website, and a sign that the model does not over-flag content indiscriminately.",
           ],
         },
       ],
@@ -194,7 +194,7 @@ export const projects: Project[] = [
     detail: {
       summary: [
         'A production-ready full-stack template: a FastAPI backend with async SQLAlchemy, Alembic, and role-based JWT authentication, a React + TypeScript + Vite frontend, and deployment via Docker Compose behind Caddy as a reverse proxy. It also ships with a Spec-Driven Development (OpenSpec) workflow built in from the first commit.',
-        'The goal is to start any new project on a solid foundation —authentication, user and role management, modular architecture, migrations, pre-commit hooks, and versioned documentation— instead of rebuilding that infrastructure from scratch every time.',
+        'The goal is to start any new project on a solid foundation (authentication, user and role management, modular architecture, migrations, pre-commit hooks, and versioned documentation) instead of rebuilding that infrastructure from scratch every time.',
       ],
       sections: [
         {

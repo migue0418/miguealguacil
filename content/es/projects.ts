@@ -14,7 +14,7 @@ export const projects: Project[] = [
     featured: true,
     detail: {
       summary: [
-        'MinecraftButlerAI es un backend FastAPI que da vida a un mayordomo ("Alfred") dentro de Minecraft: entiende preguntas en lenguaje natural —por texto o por voz—, responde con conocimiento real del juego y ejecuta acciones en el mundo. No es "una llamada a un LLM": es una arquitectura agéntica donde cada pieza resuelve un problema concreto, desde el enrutado de intenciones hasta la recuperación de conocimiento y la síntesis de voz.',
+        'MinecraftButlerAI es un backend FastAPI que da vida a un mayordomo ("Alfred") dentro de Minecraft: entiende preguntas en lenguaje natural (por texto o por voz), responde con conocimiento real del juego y ejecuta acciones en el mundo. Más que una simple llamada a un LLM, es una arquitectura agéntica donde cada pieza resuelve un problema concreto, desde el enrutado de intenciones hasta la recuperación de conocimiento y la síntesis de voz.',
         'El butler combina un agente LangGraph con memoria persistente, un sistema RAG multilingüe sobre la documentación del juego y un pipeline de voz local, todo ello expuesto mediante una API HTTP autenticada con JWT y pensada para producción (rate-limiting, migraciones, observabilidad).',
       ],
       sections: [
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     detail: {
       summary: [
         'El sexismo en redes sociales se manifiesta tanto de forma explícita como implícita, lo que dificulta su moderación automática: los sistemas actuales confunden a menudo el contenido sexista con publicaciones que simplemente lo denuncian o lo citan para criticarlo, y su rendimiento se degrada al pasar de un dominio (p. ej. Twitter) a otro (p. ej. foros o Reddit).',
-        'Este TFM parte de la hipótesis de que un modelo tipo BERT ajustado específicamente para esta tarea (fine-tuning) puede ser competitivo, e incluso superior, frente a LLMs de propósito general usados en zero-shot o few-shot, incluso reduciendo de forma significativa el volumen de datos de entrenamiento.',
+        'Este TFM parte de la hipótesis de que un modelo tipo BERT ajustado específicamente para esta tarea (fine-tuning) puede ser competitivo, e incluso superior, frente a LLMs de propósito general usados en zero-shot o few-shot, aun reduciendo de forma significativa el volumen de datos de entrenamiento.',
       ],
       sections: [
         {
@@ -93,10 +93,10 @@ export const projects: Project[] = [
         {
           heading: 'Aplicación web',
           paragraphs: [
-            'El modelo binario ModernBERT-base (entrenado sobre reduced_10k) se integró en una aplicación full-stack que demuestra su uso en un escenario real: un microservicio FastAPI con frontend React, persistencia en SQLite y autenticación JWT con tres roles — admin (gestión total de usuarios y roles), sexism_detection (lanzar y consultar análisis) y analytics (solo lectura de analíticas).',
+            'El modelo binario ModernBERT-base (entrenado sobre reduced_10k) se integró en una aplicación full-stack que demuestra su uso en un escenario real: un microservicio FastAPI con frontend React, persistencia en SQLite y autenticación JWT con tres roles: admin (gestión total de usuarios y roles), sexism_detection (lanzar y consultar análisis) y analytics (solo lectura de analíticas).',
             'El detector de sexismo ofrece tres modos de análisis: texto libre (segmentado en frases, con resultado global y por frase), URL (analiza el contenido textual de una página, con filtro opcional por etiqueta HTML) y dominio completo (respeta robots.txt, localiza el sitemap.xml, extrae las URLs indexables y ejecuta la inferencia en paralelo).',
             'El módulo de analíticas consolida los resultados en tres vistas: un dashboard global (URLs y frases analizadas, % de sexismo estimado, top-5 frases más sexistas e histograma de severidad), un listado de dominios analizados y un listado paginado de URLs por dominio con acceso al detalle frase a frase de cada una.',
-            'Como prueba de concepto se analizó el portal principal de la Universidad de Granada (www.ugr.es): sobre 590 URLs y 12.643 frases, solo 22 frases (≈0,002%) se marcaron como sexistas, y la revisión manual confirmó que eran falsos positivos (frases que hablan sobre discriminación de género, no que la ejercen) — el resultado esperado para una web institucional, y una señal de que el modelo no sobre-etiqueta contenido de forma indiscriminada.',
+            'Como prueba de concepto se analizó el portal principal de la Universidad de Granada (www.ugr.es): sobre 590 URLs y 12.643 frases, solo 22 frases (≈0,002%) se marcaron como sexistas, y la revisión manual confirmó que eran falsos positivos (frases que hablan sobre discriminación de género, no que la ejercen). Es el resultado esperado para una web institucional y una señal de que el modelo no sobre-etiqueta contenido de forma indiscriminada.',
           ],
         },
       ],
@@ -194,7 +194,7 @@ export const projects: Project[] = [
     detail: {
       summary: [
         'Plantilla full-stack lista para producción: backend FastAPI con SQLAlchemy async, Alembic y autenticación JWT con roles, frontend React + TypeScript + Vite, y despliegue con Docker Compose detrás de Caddy como reverse proxy. Incluye, además, un flujo de Spec-Driven Development (OpenSpec) integrado desde el primer commit.',
-        'El objetivo es arrancar cualquier proyecto nuevo con una base sólida —autenticación, gestión de usuarios y roles, arquitectura modular, migraciones, pre-commit hooks y documentación versionada— en lugar de reconstruir esa infraestructura desde cero en cada proyecto.',
+        'El objetivo es arrancar cualquier proyecto nuevo con una base sólida (autenticación, gestión de usuarios y roles, arquitectura modular, migraciones, pre-commit hooks y documentación versionada) en lugar de reconstruir esa infraestructura desde cero en cada proyecto.',
       ],
       sections: [
         {
@@ -210,7 +210,7 @@ export const projects: Project[] = [
           paragraphs: [
             'La autenticación combina un access token JWT de corta duración (15 minutos) con un refresh token almacenado en una cookie HTTP-only, y las contraseñas se almacenan con hash argon2 (vía pwdlib).',
             'Los roles se modelan con una relación muchos-a-muchos entre User y Role a través de la tabla de unión user_roles, lo que permite asignar varios roles a un mismo usuario y reutilizar la misma tabla de roles para distintas políticas de acceso.',
-            'La plantilla incluye reglas de negocio listas para producción: el username es único (un intento de duplicado devuelve 409) y existe protección de "último admin" — no se puede eliminar, desactivar ni degradar al último usuario administrador activo del sistema.',
+            'La plantilla incluye reglas de negocio listas para producción: el username es único (un intento de duplicado devuelve 409) y existe protección de "último admin", que impide eliminar, desactivar o degradar al último usuario administrador activo del sistema.',
           ],
         },
         {
