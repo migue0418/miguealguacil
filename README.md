@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# miguealguacil.com
 
-## Getting Started
+Portfolio personal de Miguel Alguacil, desplegado en [miguealguacil.com](https://miguealguacil.com).
 
-First, run the development server:
+Sitio bilingüe (ES/EN) generado estáticamente con Next.js 16 (App Router + SSG), sin backend propio. Incluye una landing con hero, secciones de proyectos —con páginas de detalle individuales—, stack tecnológico, experiencia, educación y contacto, con animaciones mediante Framer Motion y scroll suave con Lenis.
+
+## Stack
+
+- Next.js 16 (App Router, SSG)
+- TypeScript
+- Tailwind CSS v4
+- next-intl v4 (i18n ES/EN)
+- Framer Motion v12 + Lenis v1
+- Vitest + Testing Library (unit) / Playwright (E2E)
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verificación
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint && npm run test && npm run build
+```
 
-## Learn More
+## Tests E2E
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx playwright test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Despliegue
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desplegado en [Vercel](https://vercel.com) (plan Hobby) desde la rama `main`.
