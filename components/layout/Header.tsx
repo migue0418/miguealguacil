@@ -2,6 +2,8 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { getPersonal } from '@/lib/content'
 import { getSectionHref } from '@/lib/navigation'
 import { Nav } from './Nav'
+import { MobileNav } from './MobileNav'
+import { MobileMenuToggle } from './MobileMenuToggle'
 import { ThemeToggle } from './ThemeToggle'
 import { LocaleToggle } from './LocaleToggle'
 
@@ -22,6 +24,9 @@ export async function Header() {
         <div className="flex items-center gap-4">
           <Nav />
           <div className="flex items-center gap-1">
+            <MobileMenuToggle openLabel={t('openMenu')} closeLabel={t('closeMenu')}>
+              <MobileNav />
+            </MobileMenuToggle>
             <a
               href={personal.cvUrl}
               download
