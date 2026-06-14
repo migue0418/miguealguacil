@@ -184,6 +184,54 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'autoparts-inventory-platform',
+    name: 'Plataforma de gestión e inventario para tienda de recambios de automóvil',
+    description:
+      'Plataforma full-stack de gestión e inventario para una tienda de recambios de automóvil: sincroniza y amplía la API de Factusol/SDELsol, automatiza la lectura de facturas de proveedores con OCR, relaciona artículos equivalentes de distintas marcas para encontrar alternativas, y convierte los móviles de la tienda en PDAs conectadas en tiempo real.',
+    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'SQLAlchemy', 'OCR', 'Docker', 'Caddy'],
+    featured: true,
+    detail: {
+      summary: [
+        'Aplicación interna de gestión para una tienda de recambios de automóvil, construida sobre Factusol Cloud (SDELsol), el ERP que usa el negocio para facturación y contabilidad. El proyecto se llevó de extremo a extremo, como desarrollador y como product manager: desde decidir qué partes del flujo de trabajo merecía la pena automatizar hasta diseñar la migración desde el sistema anterior, la capa de integración con Factusol y el despliegue final en la red local del negocio.',
+        'Factusol expone una API de administración limitada (leer/escribir tablas, lanzar consultas), sin conceptos como la relación entre artículos equivalentes de distintas marcas, lectura automática de facturas o uso del móvil como terminal de almacén. El proyecto añade esa capa por encima: sincronización con PostgreSQL, un índice de equivalencias entre marcas para encontrar alternativas con el mismo uso, un pipeline de OCR para facturas de proveedores que escribe directamente en Factusol, y una app web servida en HTTPS dentro de la red local que cualquier móvil puede usar como PDA.',
+      ],
+      sections: [
+        {
+          heading: 'Sincronización y capa de negocio sobre Factusol',
+          paragraphs: [
+            'Un cliente HTTP asíncrono se autentica contra la API de Factusol (token JWT cacheado y renovado automáticamente) y expone operaciones genéricas: leer tablas, lanzar consultas SQL, y escribir, actualizar o borrar registros sobre las tablas del ERP (artículos, proveedores, tarifas, stock, facturas...). Sobre ese cliente se construyó un sincronizador que replica esas tablas en PostgreSQL de forma incremental (solo registros modificados desde la última sincronización) o completa, programable por tabla con un scheduler en segundo plano.',
+            'Tener una copia local en PostgreSQL permite construir herramientas de análisis que Factusol no ofrece: un análisis de márgenes por familia de artículos (comparando precio de tarifa y precio de coste) y una comparación de tarifas de proveedor (ficheros Excel de tarifa frente al catálogo, clasificando coincidencias por referencia o código de barras).',
+            "La pieza más valiosa de esta capa es la relación entre artículos equivalentes de distintas marcas: un mismo recambio (por ejemplo, una pastilla de freno o un filtro para un modelo de coche concreto) lo fabrican varios proveedores con referencias propias distintas, y Factusol guarda un 'código equivalente' por artículo pero no ofrece ninguna forma de explotarlo. Se construyó un índice de equivalencias que, dado un artículo, muestra de un vistazo las alternativas de otras marcas que cubren el mismo uso, junto a su stock, precio y margen, lo que resulta útil tanto para ofrecer una alternativa cuando el artículo solicitado no hay en stock como para elegir, entre varias opciones válidas, la de mejor margen.",
+          ],
+        },
+        {
+          heading: 'OCR de facturas de proveedores',
+          paragraphs: [
+            'Las facturas de compra que llegan de los proveedores (PDF o imagen) se procesan con un pipeline OCR que extrae cabecera y líneas: referencia, descripción, cantidad, precio de coste y descuentos. Cada línea se cruza contra el catálogo usando la referencia del proveedor o el código de barras del artículo.',
+            'Las líneas reconocidas se escriben directamente en Factusol a través de su API, actualizando precios de coste y, si procede, dando de alta el artículo, de forma que el coste de compra queda al día sin teclear nada. Las líneas que no se reconocen automáticamente quedan en una cola de revisión manual, donde se asocian a un artículo existente o se crean como nuevos.',
+            'Antes de esto, cada factura de proveedor implicaba teclear manualmente artículo por artículo en Factusol; ahora ese trabajo se reduce a revisar las pocas líneas que el sistema no reconoce.',
+          ],
+        },
+        {
+          heading: 'Migración desde el sistema anterior',
+          paragraphs: [
+            'El negocio venía de un sistema de gestión anterior (no Factusol) cuya base de datos se migró por completo a Factusol Cloud: catálogo de artículos, proveedores, clientes, tarifas y el histórico de facturas y albaranes emitidos y recibidos.',
+            'Los datos del sistema anterior se volcaron a PostgreSQL como zona de staging, se limpiaron y normalizaron (incluyendo una clasificación asistida con IA para completar descripciones y familias de artículos que llegaban incompletas), se revisaron manualmente para control de calidad y finalmente se exportaron a las plantillas Excel que la herramienta de importación de Factusol Cloud espera.',
+            'Como el negocio siguió operando durante toda la preparación de la migración, el proceso se diseñó de forma incremental: los nuevos movimientos (facturas, albaranes, tarifas) que se iban generando mientras se depuraba el resto del catálogo se incorporaban a la misma zona de staging en sucesivas pasadas, de modo que el volcado final a Factusol Cloud reflejara el catálogo y el histórico completos hasta el último día de actividad con el sistema anterior.',
+          ],
+        },
+        {
+          heading: 'Despliegue local: Caddy y móviles como PDA',
+          paragraphs: [
+            'Toda la aplicación (backend FastAPI sirviendo el build de React, y PostgreSQL) se ejecuta en contenedores con Docker Compose, detrás de Caddy como proxy inverso. Caddy emite y renueva automáticamente certificados TLS para un dominio interno de la red local del negocio, sin depender de un dominio público.',
+            'Con esos certificados instalados como de confianza en los móviles de la tienda, cualquier empleado puede abrir la app desde el navegador del teléfono por HTTPS y usar la cámara como lector de códigos de barras (API BarcodeDetector con polyfill WASM para que funcione también en iOS), convirtiendo el móvil en una PDA conectada en tiempo real tanto a la API de Factusol como a la base de datos PostgreSQL sincronizada.',
+            'El resultado es que el almacén dispone de consulta de stock, precios e inventario en tiempo real desde cualquier móvil, sin instalar nada y sin comprar hardware dedicado.',
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: 'fastapi-react-template',
     name: 'FastAPI + React Template',
     description:

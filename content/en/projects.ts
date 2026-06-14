@@ -184,6 +184,54 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'autoparts-inventory-platform',
+    name: 'Inventory & Operations Platform for an Auto Parts Store',
+    description:
+      'Full-stack inventory and operations platform for an auto parts store: syncs and extends the Factusol/SDELsol API, automates supplier invoice processing with OCR, cross-references equivalent products across brands to surface alternatives, and turns staff phones into real-time connected PDAs.',
+    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'SQLAlchemy', 'OCR', 'Docker', 'Caddy'],
+    featured: true,
+    detail: {
+      summary: [
+        "Internal management application for an auto parts store, built on top of Factusol Cloud (SDELsol), the ERP the business uses for invoicing and accounting. The project was driven end to end, as both developer and product manager, from deciding which parts of the daily workflow were worth automating to designing the migration from the previous system, the Factusol integration layer, and the final deployment on the business's local network.",
+        "Factusol exposes a narrow admin API (read/write tables, run queries) with no concept of cross-brand product equivalence, automatic invoice reading, or using a phone as a warehouse terminal. The project adds that layer on top: a PostgreSQL sync layer, a cross-brand equivalence index for finding alternatives with the same use, an OCR pipeline for supplier invoices that writes straight back into Factusol, and a web app served over HTTPS on the local network that any phone can use as a PDA.",
+      ],
+      sections: [
+        {
+          heading: 'Sync layer & business logic on top of Factusol',
+          paragraphs: [
+            "An async HTTP client authenticates against the Factusol API (a JWT token cached and refreshed automatically) and exposes generic operations: reading tables, running SQL-like queries, and writing, updating or deleting records over the ERP's tables (articles, suppliers, price lists, stock, invoices...). On top of that client, a syncer mirrors those tables into PostgreSQL either incrementally (only records modified since the last sync) or in full, schedulable per table with a background scheduler.",
+            "Having a local PostgreSQL copy enables analysis tools Factusol doesn't offer: a margin analysis by product family (comparing list price against cost price) and a supplier rate-sheet comparison (matching tariff Excel files against the catalog by reference or barcode).",
+            "The most valuable piece of this layer is the cross-brand equivalent-articles relationship: the same part (say, a brake pad or a filter for a specific car model) is manufactured by several suppliers under their own different references, and Factusol stores an 'equivalent code' per article but offers no way to make use of it. An equivalence index was built that, given an article, shows at a glance the alternatives from other brands covering the same use, along with their stock, price and margin, useful both for offering an alternative when the requested article is out of stock and for picking the best-margin option among several valid alternatives.",
+          ],
+        },
+        {
+          heading: 'Supplier invoice OCR',
+          paragraphs: [
+            "Purchase invoices arriving from suppliers (PDF or image) are processed through an OCR pipeline that extracts header and line items: reference, description, quantity, unit cost and discounts. Each line is matched against the catalog using the supplier's reference or the article's barcode.",
+            "Recognized lines are written directly into Factusol through its API: cost prices get updated and, where needed, the article gets created, so purchase costs stay up to date without any manual typing. Lines that aren't recognized automatically fall into a manual review queue, where staff link them to an existing article or create a new one.",
+            "Before this, every supplier invoice meant typing each line item into Factusol by hand; now that work is reduced to reviewing the handful of lines the system doesn't recognize.",
+          ],
+        },
+        {
+          heading: 'Migration from the previous system',
+          paragraphs: [
+            'The business came from a previous management system (not Factusol), whose database was fully migrated to Factusol Cloud: article catalog, suppliers, customers, price lists, and the history of issued and received invoices and delivery notes.',
+            "Data from the previous system was staged in PostgreSQL, cleaned and normalized (including AI-assisted classification to fill in incomplete article descriptions and families), manually reviewed for quality, and finally exported to the Excel templates Factusol Cloud's import tool expects.",
+            'Because the business kept operating while the migration was being prepared, the process was designed to be incremental: new transactions (invoices, delivery notes, price lists) generated while the rest of the catalog was being cleaned up were folded into the same staging area over successive passes, so the final dump into Factusol Cloud reflected the full catalog and history up to the last day of activity on the previous system.',
+          ],
+        },
+        {
+          heading: 'Local deployment: Caddy & mobile devices as PDAs',
+          paragraphs: [
+            "The whole application (a FastAPI backend serving the React build, plus PostgreSQL) runs in containers via Docker Compose, behind Caddy as a reverse proxy. Caddy automatically issues and renews TLS certificates for an internal hostname on the business's local network, with no public domain required.",
+            "With those certificates trusted on the store's phones, any employee can open the app from their phone's browser over HTTPS and use the camera as a barcode scanner (the BarcodeDetector API with a WASM polyfill so it also works on iOS), turning the phone into a PDA connected in real time to both the Factusol API and the synced PostgreSQL database.",
+            'The result is real-time stock, pricing and inventory lookups from any phone on the shop floor, with no app to install and no dedicated hardware to buy.',
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: 'fastapi-react-template',
     name: 'FastAPI + React Template',
     description:
