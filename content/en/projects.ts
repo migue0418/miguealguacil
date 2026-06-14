@@ -184,47 +184,6 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'fastapi-react-template',
-    name: 'FastAPI + React Template',
-    description:
-      'Full stack template with SDD and development best practices. Includes pre-commit hooks, Git Flow, Docker, and modular structure for production projects.',
-    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'Docker'],
-    repoUrl: 'https://github.com/migue0418/fastapi-react-template',
-    featured: true,
-    detail: {
-      summary: [
-        'A production-ready full-stack template: a FastAPI backend with async SQLAlchemy, Alembic, and role-based JWT authentication, a React + TypeScript + Vite frontend, and deployment via Docker Compose behind Caddy as a reverse proxy. It also ships with a Spec-Driven Development (OpenSpec) workflow built in from the first commit.',
-        'The goal is to start any new project on a solid foundation (authentication, user and role management, modular architecture, migrations, pre-commit hooks, and versioned documentation) instead of rebuilding that infrastructure from scratch every time.',
-      ],
-      sections: [
-        {
-          heading: 'Slice architecture',
-          paragraphs: [
-            'Both the backend and the frontend organize code by feature ("slice") rather than by technical layer: each backend feature lives in app/features/<feature>/ with its router.py, schemas.py, service.py, repository.py, and, when needed, models.py files; each frontend feature lives in src/features/<feature>/ with api.ts, types.ts, and its page components.',
-            'This organization keeps each feature self-contained and easy to locate, and makes it predictable which files a change (e.g. adding a new resource) will touch on either side.',
-            'When a new SQLAlchemy model is added, it is imported in core/database.py::import_model_modules and the corresponding migration is generated with Alembic (alembic revision --autogenerate followed by alembic upgrade head), so the database schema stays versioned alongside the code.',
-          ],
-        },
-        {
-          heading: 'Auth & roles',
-          paragraphs: [
-            'Authentication combines a short-lived JWT access token (15 minutes) with a refresh token stored in an HTTP-only cookie, and passwords are stored using argon2 hashing (via pwdlib).',
-            'Roles are modeled as a many-to-many relationship between User and Role through the user_roles join table, allowing a single user to hold multiple roles and reusing the same roles table for different access policies.',
-            'The template ships with production-ready business rules: usernames are unique (a duplicate attempt returns 409) and a "last admin" safeguard prevents deleting, deactivating, or demoting the last active admin user in the system.',
-          ],
-        },
-        {
-          heading: 'Built-in Spec-Driven Development',
-          paragraphs: [
-            'The template includes a complete Spec-Driven Development workflow based on OpenSpec: /opsx:explore to clarify an idea, /opsx:propose to generate the proposal and its artifacts (specs, design, tasks), a file-level technical plan before implementing, /opsx:apply to execute the tasks, and /opsx:archive to merge the specs when closing the change.',
-            'It includes specialized agents (backend-developer, frontend-developer, product-strategy-analyst) and reusable skills (openspec-*, enrich-us, write-pr-report) that automate recurring steps of the development cycle, from drafting user stories to opening the pull request.',
-            'Project documentation is versioned alongside the code in docs/ (development_guide.md, base-standards.md, frontend-standards.md, backend-standards.md, data-model.md, among others), so conventions and the data model evolve in the same repository and under the same change control as the application.',
-          ],
-        },
-      ],
-    },
-  },
-  {
     id: 'autoparts-inventory-platform',
     name: 'Inventory & Operations Platform for an Auto Parts Store',
     description:
@@ -267,6 +226,47 @@ export const projects: Project[] = [
             "The whole application (a FastAPI backend serving the React build, plus PostgreSQL) runs in containers via Docker Compose, behind Caddy as a reverse proxy. Caddy automatically issues and renews TLS certificates for an internal hostname on the business's local network, with no public domain required.",
             "With those certificates trusted on the store's phones, any employee can open the app from their phone's browser over HTTPS and use the camera as a barcode scanner (the BarcodeDetector API with a WASM polyfill so it also works on iOS), turning the phone into a PDA connected in real time to both the Factusol API and the synced PostgreSQL database.",
             'The result is real-time stock, pricing and inventory lookups from any phone on the shop floor, with no app to install and no dedicated hardware to buy.',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'fastapi-react-template',
+    name: 'FastAPI + React Template',
+    description:
+      'Full stack template with SDD and development best practices. Includes pre-commit hooks, Git Flow, Docker, and modular structure for production projects.',
+    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'Docker'],
+    repoUrl: 'https://github.com/migue0418/fastapi-react-template',
+    featured: true,
+    detail: {
+      summary: [
+        'A production-ready full-stack template: a FastAPI backend with async SQLAlchemy, Alembic, and role-based JWT authentication, a React + TypeScript + Vite frontend, and deployment via Docker Compose behind Caddy as a reverse proxy. It also ships with a Spec-Driven Development (OpenSpec) workflow built in from the first commit.',
+        'The goal is to start any new project on a solid foundation (authentication, user and role management, modular architecture, migrations, pre-commit hooks, and versioned documentation) instead of rebuilding that infrastructure from scratch every time.',
+      ],
+      sections: [
+        {
+          heading: 'Slice architecture',
+          paragraphs: [
+            'Both the backend and the frontend organize code by feature ("slice") rather than by technical layer: each backend feature lives in app/features/<feature>/ with its router.py, schemas.py, service.py, repository.py, and, when needed, models.py files; each frontend feature lives in src/features/<feature>/ with api.ts, types.ts, and its page components.',
+            'This organization keeps each feature self-contained and easy to locate, and makes it predictable which files a change (e.g. adding a new resource) will touch on either side.',
+            'When a new SQLAlchemy model is added, it is imported in core/database.py::import_model_modules and the corresponding migration is generated with Alembic (alembic revision --autogenerate followed by alembic upgrade head), so the database schema stays versioned alongside the code.',
+          ],
+        },
+        {
+          heading: 'Auth & roles',
+          paragraphs: [
+            'Authentication combines a short-lived JWT access token (15 minutes) with a refresh token stored in an HTTP-only cookie, and passwords are stored using argon2 hashing (via pwdlib).',
+            'Roles are modeled as a many-to-many relationship between User and Role through the user_roles join table, allowing a single user to hold multiple roles and reusing the same roles table for different access policies.',
+            'The template ships with production-ready business rules: usernames are unique (a duplicate attempt returns 409) and a "last admin" safeguard prevents deleting, deactivating, or demoting the last active admin user in the system.',
+          ],
+        },
+        {
+          heading: 'Built-in Spec-Driven Development',
+          paragraphs: [
+            'The template includes a complete Spec-Driven Development workflow based on OpenSpec: /opsx:explore to clarify an idea, /opsx:propose to generate the proposal and its artifacts (specs, design, tasks), a file-level technical plan before implementing, /opsx:apply to execute the tasks, and /opsx:archive to merge the specs when closing the change.',
+            'It includes specialized agents (backend-developer, frontend-developer, product-strategy-analyst) and reusable skills (openspec-*, enrich-us, write-pr-report) that automate recurring steps of the development cycle, from drafting user stories to opening the pull request.',
+            'Project documentation is versioned alongside the code in docs/ (development_guide.md, base-standards.md, frontend-standards.md, backend-standards.md, data-model.md, among others), so conventions and the data model evolve in the same repository and under the same change control as the application.',
           ],
         },
       ],

@@ -184,47 +184,6 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'fastapi-react-template',
-    name: 'FastAPI + React Template',
-    description:
-      'Plantilla full stack con SDD y buenas prácticas de desarrollo. Incluye pre-commit hooks, Git Flow, Docker y estructura modular para proyectos de producción.',
-    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'Docker'],
-    repoUrl: 'https://github.com/migue0418/fastapi-react-template',
-    featured: true,
-    detail: {
-      summary: [
-        'Plantilla full-stack lista para producción: backend FastAPI con SQLAlchemy async, Alembic y autenticación JWT con roles, frontend React + TypeScript + Vite, y despliegue con Docker Compose detrás de Caddy como reverse proxy. Incluye, además, un flujo de Spec-Driven Development (OpenSpec) integrado desde el primer commit.',
-        'El objetivo es arrancar cualquier proyecto nuevo con una base sólida (autenticación, gestión de usuarios y roles, arquitectura modular, migraciones, pre-commit hooks y documentación versionada) en lugar de reconstruir esa infraestructura desde cero en cada proyecto.',
-      ],
-      sections: [
-        {
-          heading: 'Arquitectura por slices',
-          paragraphs: [
-            'Tanto el backend como el frontend organizan el código por funcionalidad ("slice") en lugar de por capa técnica: cada feature del backend vive en app/features/<feature>/ con sus archivos router.py, schemas.py, service.py, repository.py y, si aplica, models.py; cada feature del frontend vive en src/features/<feature>/ con api.ts, types.ts y los componentes de página.',
-            'Esta organización mantiene cada funcionalidad autocontenida y fácil de localizar, y facilita que un cambio (p. ej. añadir un nuevo recurso) toque un conjunto acotado y predecible de archivos en ambos lados.',
-            'Al añadir un modelo SQLAlchemy nuevo, se importa en core/database.py::import_model_modules y se genera la migración correspondiente con Alembic (alembic revision --autogenerate seguido de alembic upgrade head), de forma que el esquema de base de datos queda siempre versionado junto al código.',
-          ],
-        },
-        {
-          heading: 'Autenticación y roles',
-          paragraphs: [
-            'La autenticación combina un access token JWT de corta duración (15 minutos) con un refresh token almacenado en una cookie HTTP-only, y las contraseñas se almacenan con hash argon2 (vía pwdlib).',
-            'Los roles se modelan con una relación muchos-a-muchos entre User y Role a través de la tabla de unión user_roles, lo que permite asignar varios roles a un mismo usuario y reutilizar la misma tabla de roles para distintas políticas de acceso.',
-            'La plantilla incluye reglas de negocio listas para producción: el username es único (un intento de duplicado devuelve 409) y existe protección de "último admin", que impide eliminar, desactivar o degradar al último usuario administrador activo del sistema.',
-          ],
-        },
-        {
-          heading: 'Spec-Driven Development integrado',
-          paragraphs: [
-            'La plantilla incorpora un flujo completo de Spec-Driven Development basado en OpenSpec: /opsx:explore para aclarar una idea, /opsx:propose para generar la propuesta y sus artefactos (specs, design, tasks), un plan técnico a nivel de archivos antes de implementar, /opsx:apply para ejecutar las tareas y /opsx:archive para fusionar las especificaciones al cerrar el cambio.',
-            'Incluye agentes especializados (backend-developer, frontend-developer, product-strategy-analyst) y skills reutilizables (openspec-*, enrich-us, write-pr-report) que automatizan pasos recurrentes del ciclo de desarrollo, desde la redacción de historias de usuario hasta la apertura del pull request.',
-            'La documentación del proyecto está versionada junto al código en docs/ (development_guide.md, base-standards.md, frontend-standards.md, backend-standards.md, data-model.md, entre otros), de forma que las convenciones y el modelo de datos evolucionan en el mismo repositorio y bajo el mismo control de cambios que la aplicación.',
-          ],
-        },
-      ],
-    },
-  },
-  {
     id: 'autoparts-inventory-platform',
     name: 'Plataforma de gestión e inventario para tienda de recambios de automóvil',
     description:
@@ -267,6 +226,47 @@ export const projects: Project[] = [
             'Toda la aplicación (backend FastAPI sirviendo el build de React, y PostgreSQL) se ejecuta en contenedores con Docker Compose, detrás de Caddy como proxy inverso. Caddy emite y renueva automáticamente certificados TLS para un dominio interno de la red local del negocio, sin depender de un dominio público.',
             'Con esos certificados instalados como de confianza en los móviles de la tienda, cualquier empleado puede abrir la app desde el navegador del teléfono por HTTPS y usar la cámara como lector de códigos de barras (API BarcodeDetector con polyfill WASM para que funcione también en iOS), convirtiendo el móvil en una PDA conectada en tiempo real tanto a la API de Factusol como a la base de datos PostgreSQL sincronizada.',
             'El resultado es que el almacén dispone de consulta de stock, precios e inventario en tiempo real desde cualquier móvil, sin instalar nada y sin comprar hardware dedicado.',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'fastapi-react-template',
+    name: 'FastAPI + React Template',
+    description:
+      'Plantilla full stack con SDD y buenas prácticas de desarrollo. Incluye pre-commit hooks, Git Flow, Docker y estructura modular para proyectos de producción.',
+    stack: ['Python', 'FastAPI', 'React', 'TypeScript', 'Docker'],
+    repoUrl: 'https://github.com/migue0418/fastapi-react-template',
+    featured: true,
+    detail: {
+      summary: [
+        'Plantilla full-stack lista para producción: backend FastAPI con SQLAlchemy async, Alembic y autenticación JWT con roles, frontend React + TypeScript + Vite, y despliegue con Docker Compose detrás de Caddy como reverse proxy. Incluye, además, un flujo de Spec-Driven Development (OpenSpec) integrado desde el primer commit.',
+        'El objetivo es arrancar cualquier proyecto nuevo con una base sólida (autenticación, gestión de usuarios y roles, arquitectura modular, migraciones, pre-commit hooks y documentación versionada) en lugar de reconstruir esa infraestructura desde cero en cada proyecto.',
+      ],
+      sections: [
+        {
+          heading: 'Arquitectura por slices',
+          paragraphs: [
+            'Tanto el backend como el frontend organizan el código por funcionalidad ("slice") en lugar de por capa técnica: cada feature del backend vive en app/features/<feature>/ con sus archivos router.py, schemas.py, service.py, repository.py y, si aplica, models.py; cada feature del frontend vive en src/features/<feature>/ con api.ts, types.ts y los componentes de página.',
+            'Esta organización mantiene cada funcionalidad autocontenida y fácil de localizar, y facilita que un cambio (p. ej. añadir un nuevo recurso) toque un conjunto acotado y predecible de archivos en ambos lados.',
+            'Al añadir un modelo SQLAlchemy nuevo, se importa en core/database.py::import_model_modules y se genera la migración correspondiente con Alembic (alembic revision --autogenerate seguido de alembic upgrade head), de forma que el esquema de base de datos queda siempre versionado junto al código.',
+          ],
+        },
+        {
+          heading: 'Autenticación y roles',
+          paragraphs: [
+            'La autenticación combina un access token JWT de corta duración (15 minutos) con un refresh token almacenado en una cookie HTTP-only, y las contraseñas se almacenan con hash argon2 (vía pwdlib).',
+            'Los roles se modelan con una relación muchos-a-muchos entre User y Role a través de la tabla de unión user_roles, lo que permite asignar varios roles a un mismo usuario y reutilizar la misma tabla de roles para distintas políticas de acceso.',
+            'La plantilla incluye reglas de negocio listas para producción: el username es único (un intento de duplicado devuelve 409) y existe protección de "último admin", que impide eliminar, desactivar o degradar al último usuario administrador activo del sistema.',
+          ],
+        },
+        {
+          heading: 'Spec-Driven Development integrado',
+          paragraphs: [
+            'La plantilla incorpora un flujo completo de Spec-Driven Development basado en OpenSpec: /opsx:explore para aclarar una idea, /opsx:propose para generar la propuesta y sus artefactos (specs, design, tasks), un plan técnico a nivel de archivos antes de implementar, /opsx:apply para ejecutar las tareas y /opsx:archive para fusionar las especificaciones al cerrar el cambio.',
+            'Incluye agentes especializados (backend-developer, frontend-developer, product-strategy-analyst) y skills reutilizables (openspec-*, enrich-us, write-pr-report) que automatizan pasos recurrentes del ciclo de desarrollo, desde la redacción de historias de usuario hasta la apertura del pull request.',
+            'La documentación del proyecto está versionada junto al código en docs/ (development_guide.md, base-standards.md, frontend-standards.md, backend-standards.md, data-model.md, entre otros), de forma que las convenciones y el modelo de datos evolucionan en el mismo repositorio y bajo el mismo control de cambios que la aplicación.',
           ],
         },
       ],
