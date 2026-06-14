@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { routing } from '@/i18n/routing'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import { Header } from '@/components/layout/Header'
@@ -83,6 +84,7 @@ export default async function RootLayout({
             </SmoothScroll>
           </NextIntlClientProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
