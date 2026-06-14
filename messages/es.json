@@ -59,6 +59,8 @@
   "projectDetail": {
     "back": "Volver a proyectos",
     "overview": "Resumen",
+    "demo": "Demo",
+    "underTheHood": "Trazas con LangSmith",
     "results": "Resultados",
     "screenshots": "Capturas",
     "links": "Enlaces"

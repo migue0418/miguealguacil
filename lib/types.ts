@@ -32,8 +32,24 @@ export interface ProjectDetailImage {
   height: number
 }
 
+export interface ProjectDetailConversationTurn {
+  role: 'user' | 'assistant'
+  speaker: string
+  text: string
+}
+
+export interface ProjectDetailDemo {
+  video: {
+    src: string
+    caption?: string
+  }
+  conversation?: ProjectDetailConversationTurn[]
+  images?: ProjectDetailImage[]
+}
+
 export interface ProjectDetail {
   summary: string[]
+  demo?: ProjectDetailDemo
   sections?: ProjectDetailSection[]
   results?: ProjectDetailResult[]
   images?: ProjectDetailImage[]

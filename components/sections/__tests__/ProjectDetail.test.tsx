@@ -84,6 +84,37 @@ const projectWithImages: Project = {
   },
 }
 
+const projectWithDemo: Project = {
+  id: 'minecraft-butler-ai',
+  name: 'Minecraft Butler AI',
+  description: 'An LLM butler for Minecraft.',
+  stack: ['Python', 'FastAPI'],
+  repoUrl: 'https://github.com/test/minecraft-butler-ai-backend',
+  featured: true,
+  detail: {
+    summary: ['Summary paragraph.'],
+    demo: {
+      video: {
+        src: '/videos/projects/minecraft-butler-ai/demo.mp4',
+        caption: 'Three questions in a single session.',
+      },
+      conversation: [
+        { role: 'user', speaker: 'You', text: 'How do I craft an iron sword?' },
+        { role: 'assistant', speaker: 'Alfred', text: '2 iron ingots and 1 stick.' },
+      ],
+      images: [
+        {
+          src: '/images/projects/minecraft-butler-ai/langsmith-traces.png',
+          alt: 'LangSmith traces overview',
+          caption: 'The three turns with latency and cost.',
+          width: 1918,
+          height: 364,
+        },
+      ],
+    },
+  },
+}
+
 describe('ProjectDetail', () => {
   it('renders the project name and stack chips', async () => {
     const { ProjectDetail } = await import('../ProjectDetail')
@@ -151,6 +182,33 @@ describe('ProjectDetail', () => {
     render(await ProjectDetail({ project: fullProject }))
     expect(screen.queryByRole('heading', { name: 'screenshots' })).not.toBeInTheDocument()
     expect(screen.queryByRole('img')).not.toBeInTheDocument()
+  })
+
+  it('renders detail.demo with video, conversation and under-the-hood images', async () => {
+    const { ProjectDetail } = await import('../ProjectDetail')
+    const { container } = render(await ProjectDetail({ project: projectWithDemo }))
+
+    expect(screen.getByRole('heading', { name: 'demo' })).toBeInTheDocument()
+
+    const video = container.querySelector('video')
+    expect(video).toHaveAttribute('src', '/videos/projects/minecraft-butler-ai/demo.mp4')
+    expect(screen.getByText('Three questions in a single session.')).toBeInTheDocument()
+
+    expect(screen.getByText('You')).toBeInTheDocument()
+    expect(screen.getByText('How do I craft an iron sword?')).toBeInTheDocument()
+    expect(screen.getByText('Alfred')).toBeInTheDocument()
+    expect(screen.getByText('2 iron ingots and 1 stick.')).toBeInTheDocument()
+
+    expect(screen.getByRole('heading', { name: 'underTheHood' })).toBeInTheDocument()
+    expect(screen.getByAltText('LangSmith traces overview')).toBeInTheDocument()
+    expect(screen.getByText('The three turns with latency and cost.')).toBeInTheDocument()
+  })
+
+  it('does not render a demo section when detail.demo is missing', async () => {
+    const { ProjectDetail } = await import('../ProjectDetail')
+    const { container } = render(await ProjectDetail({ project: fullProject }))
+    expect(screen.queryByRole('heading', { name: 'demo' })).not.toBeInTheDocument()
+    expect(container.querySelector('video')).not.toBeInTheDocument()
   })
 
   it('renders a back link to the projects section', async () => {

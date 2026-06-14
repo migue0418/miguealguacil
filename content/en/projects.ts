@@ -17,6 +17,63 @@ export const projects: Project[] = [
         'MinecraftButlerAI is a FastAPI backend that brings a butler ("Alfred") to life inside Minecraft: it understands natural-language questions (by text or by voice), answers with real game knowledge, and executes in-world actions. Rather than a single LLM call, it\'s an agentic architecture where each piece solves a concrete problem, from intent routing to knowledge retrieval and voice synthesis.',
         'The butler combines a LangGraph agent with persistent memory, a multilingual RAG system over the game documentation, and a local voice pipeline, all exposed through a JWT-authenticated HTTP API designed for production (rate-limiting, migrations, observability).',
       ],
+      demo: {
+        video: {
+          src: '/videos/projects/minecraft-butler-ai/demo.mp4',
+          caption:
+            'Three questions in a single session, each exercising a different capability of the agent.',
+        },
+        conversation: [
+          {
+            role: 'user',
+            speaker: 'You',
+            text: 'How do I craft an iron sword?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: 'Craft it with 2 iron ingots and 1 stick. The ingots go in the top two slots of the center column, and the stick in the bottom slot.',
+          },
+          {
+            role: 'user',
+            speaker: 'You',
+            text: 'Do I have what I need to make one?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: "No. You're missing the iron ingots. You have sticks in your inventory but no iron ingots.",
+          },
+          {
+            role: 'user',
+            speaker: 'You',
+            text: 'Which crops are ready to harvest?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: 'You have 5 carrots, 2 potatoes, and 6 wheat ready to harvest.',
+          },
+        ],
+        images: [
+          {
+            src: '/images/projects/minecraft-butler-ai/langsmith-traces.png',
+            alt: 'LangSmith view of the three demo interactions, showing latency, time-to-first-token, token usage, and cost for each turn',
+            caption:
+              'The three turns with latency, time-to-first-token, token usage, and cost: around $0.004 and 2.4-3.5s per turn.',
+            width: 1918,
+            height: 364,
+          },
+          {
+            src: '/images/projects/minecraft-butler-ai/langsmith-trace-tree.png',
+            alt: 'LangSmith trace tree for question 1, showing intent classification, routing, RAG retrieval, and answer generation',
+            caption:
+              'Full trace for question 1: intent classification, routing, RAG retrieval, and answer generation.',
+            width: 1919,
+            height: 949,
+          },
+        ],
+      },
       sections: [
         {
           heading: 'Agent architecture',
