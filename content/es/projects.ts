@@ -17,6 +17,63 @@ export const projects: Project[] = [
         'MinecraftButlerAI es un backend FastAPI que da vida a un mayordomo ("Alfred") dentro de Minecraft: entiende preguntas en lenguaje natural (por texto o por voz), responde con conocimiento real del juego y ejecuta acciones en el mundo. Más que una simple llamada a un LLM, es una arquitectura agéntica donde cada pieza resuelve un problema concreto, desde el enrutado de intenciones hasta la recuperación de conocimiento y la síntesis de voz.',
         'El butler combina un agente LangGraph con memoria persistente, un sistema RAG multilingüe sobre la documentación del juego y un pipeline de voz local, todo ello expuesto mediante una API HTTP autenticada con JWT y pensada para producción (rate-limiting, migraciones, observabilidad).',
       ],
+      demo: {
+        video: {
+          src: '/videos/projects/minecraft-butler-ai/demo.mp4',
+          caption:
+            'Tres preguntas en una misma sesión, cada una probando una capacidad distinta del agente.',
+        },
+        conversation: [
+          {
+            role: 'user',
+            speaker: 'Tú',
+            text: '¿Cómo se hace una espada de hierro?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: 'Se craftea con 2 lingotes de hierro y 1 palo. Los lingotes van en los dos espacios superiores de la columna central y el palo en el espacio inferior.',
+          },
+          {
+            role: 'user',
+            speaker: 'Tú',
+            text: '¿Tengo lo necesario para hacer una?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: 'No. Te faltan los lingotes de hierro. Tienes palos en el inventario pero ningún lingote de hierro.',
+          },
+          {
+            role: 'user',
+            speaker: 'Tú',
+            text: '¿Qué cultivos están listos para recoger?',
+          },
+          {
+            role: 'assistant',
+            speaker: 'Alfred',
+            text: 'Tienes 5 zanahorias, 2 patatas y 6 de trigo listos para cosechar.',
+          },
+        ],
+        images: [
+          {
+            src: '/images/projects/minecraft-butler-ai/langsmith-traces.png',
+            alt: 'Vista de LangSmith con las tres interacciones de la demo, mostrando latencia, tiempo al primer token, tokens usados y coste de cada turno',
+            caption:
+              'Las tres interacciones con latencia, tiempo al primer token, tokens usados y coste: entre 0,004 $ y 2,4-3,5 s por turno.',
+            width: 1918,
+            height: 364,
+          },
+          {
+            src: '/images/projects/minecraft-butler-ai/langsmith-trace-tree.png',
+            alt: 'Árbol de traza de LangSmith para la pregunta 1, mostrando clasificación de intención, enrutado, recuperación RAG y generación de la respuesta',
+            caption:
+              'Traza completa de la pregunta 1: clasificación de intención, enrutado, recuperación RAG y generación de la respuesta.',
+            width: 1919,
+            height: 949,
+          },
+        ],
+      },
       sections: [
         {
           heading: 'Arquitectura del agente',

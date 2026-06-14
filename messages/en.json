@@ -59,6 +59,8 @@
   "projectDetail": {
     "back": "Back to projects",
     "overview": "Overview",
+    "demo": "Demo",
+    "underTheHood": "Under the hood (LangSmith)",
     "results": "Results",
     "screenshots": "Screenshots",
     "links": "Links"

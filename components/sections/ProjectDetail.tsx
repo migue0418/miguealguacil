@@ -83,6 +83,70 @@ export async function ProjectDetail({ project }: ProjectDetailProps) {
         </div>
       </FadeIn>
 
+      {project.detail?.demo && (
+        <div className="mb-16">
+          <h2 className="font-mono uppercase tracking-widest text-primary text-sm md:text-base mb-6">
+            {t('demo')}
+          </h2>
+          <FadeIn className="mb-10">
+            <video
+              src={project.detail.demo.video.src}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full aspect-[1920/1012] rounded border border-default bg-black"
+            />
+            {project.detail.demo.video.caption && (
+              <p className="mt-2 font-mono text-xs text-muted">{project.detail.demo.video.caption}</p>
+            )}
+          </FadeIn>
+
+          {project.detail.demo.conversation && (
+            <StaggerChildren className="flex flex-col gap-4 max-w-3xl mb-10">
+              {project.detail.demo.conversation.map((turn, i) => (
+                <div key={i}>
+                  <span
+                    className={`font-mono text-xs uppercase tracking-wide ${
+                      turn.role === 'assistant' ? 'text-accent' : 'text-muted'
+                    }`}
+                  >
+                    {turn.speaker}
+                  </span>
+                  <p className="text-muted leading-relaxed mt-1">{turn.text}</p>
+                </div>
+              ))}
+            </StaggerChildren>
+          )}
+
+          {project.detail.demo.images && (
+            <>
+              <h3 className="font-mono uppercase tracking-widest text-primary text-sm md:text-base mb-4">
+                {t('underTheHood')}
+              </h3>
+              <StaggerChildren className="flex flex-col gap-8">
+                {project.detail.demo.images.map((img) => (
+                  <figure key={img.src}>
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      width={img.width}
+                      height={img.height}
+                      sizes="(max-width: 768px) 100vw, 1200px"
+                      className="rounded border border-default w-full h-auto"
+                    />
+                    {img.caption && (
+                      <figcaption className="mt-2 font-mono text-xs text-muted">
+                        {img.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </StaggerChildren>
+            </>
+          )}
+        </div>
+      )}
+
       {project.detail?.sections && (
         <StaggerChildren className="flex flex-col gap-12 mb-16">
           {project.detail.sections.map((section) => (
